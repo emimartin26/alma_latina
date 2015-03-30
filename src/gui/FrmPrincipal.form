@@ -11,6 +11,9 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Images/icons/sheet3.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Nuevo Alumno"/>
               </Properties>
               <Events>
@@ -19,6 +22,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Images/icons/update22.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Modificar Alumno"/>
               </Properties>
               <Events>
@@ -27,11 +33,17 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem3">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Images/icons/delete85.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Eliminar Alumno"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem4">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Images/icons/chart46.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Listar Alumnos"/>
               </Properties>
             </MenuItem>
@@ -44,6 +56,9 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem5">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Images/icons/clipboard105 (1).png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Registrar cuota"/>
               </Properties>
               <Events>

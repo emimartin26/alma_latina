@@ -69,6 +69,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         jMenu1.setText("Gestion Alumnos");
 
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons/sheet3.png"))); // NOI18N
         jMenuItem1.setText("Nuevo Alumno");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -77,6 +78,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem1);
 
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons/update22.png"))); // NOI18N
         jMenuItem2.setText("Modificar Alumno");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -85,9 +87,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem2);
 
+        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons/delete85.png"))); // NOI18N
         jMenuItem3.setText("Eliminar Alumno");
         jMenu1.add(jMenuItem3);
 
+        jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons/chart46.png"))); // NOI18N
         jMenuItem4.setText("Listar Alumnos");
         jMenu1.add(jMenuItem4);
 
@@ -95,6 +99,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         jMenu2.setText("Gestion Cuotas");
 
+        jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons/clipboard105 (1).png"))); // NOI18N
         jMenuItem5.setText("Registrar cuota");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
