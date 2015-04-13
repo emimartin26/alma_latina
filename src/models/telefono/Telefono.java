@@ -4,22 +4,24 @@
  * and open the template in the editor.
  */
 
-package models.ubicacion;
+package models.telefono;
 
 /**
  *
  * @author emiliano
  */
-public class Pais {
-    private String nombre;
+public class Telefono {
+    
+    private String numero;
     private String descripcion;
+    private TipoTelefono tipo;
 
-    public String getNombre() {
-        return nombre;
+    public String getNumero() {
+        return numero;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNumero(String numero) {
+        this.numero = numero;
     }
 
     public String getDescripcion() {
@@ -29,6 +31,15 @@ public class Pais {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+
+    public TipoTelefono getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoTelefono tipo) {
+        this.tipo = tipo;
+    }
+    
     
     
 }

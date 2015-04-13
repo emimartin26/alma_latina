@@ -10,9 +10,11 @@ package models.ubicacion;
  *
  * @author emiliano
  */
-public class Pais {
+public class Provincia {
+    
     private String nombre;
     private String descripcion;
+    private Pais pais;
 
     public String getNombre() {
         return nombre;
@@ -28,6 +30,14 @@ public class Pais {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public Pais getPais() {
+        return pais;
+    }
+
+    public void setPais(Pais pais) {
+        this.pais = pais;
     }
     
     
