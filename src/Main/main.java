@@ -7,6 +7,11 @@
 package Main;
 
 import gui.FrmPrincipal;
+import hibernate.GestorHibernate;
+import hibernate.HibernateUtil;
+
+/**
+import hibernate.HibernateUtil;
 
 /**
  *
@@ -20,6 +25,7 @@ public class main {
     public static void main(String[] args) {
         FrmPrincipal f = new FrmPrincipal();
         f.setVisible(true);
+        HibernateUtil.inicializar();
         
        
         
