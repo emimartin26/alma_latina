@@ -4,42 +4,28 @@
  * and open the template in the editor.
  */
 
-package models.inscripcion;
-
+package models.institucion;
 import javax.persistence.*;
 /**
  *
  * @author EMILIANO
  */
 @Entity
-@Table(name = "estado")
-public class Estado {
+@Table(name = "turno")
+public class Turno {
     @Id
     @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
     private long id;
     
     private String nombre;
-    private String ambito;
-    private String descripcion; 
-    
+    private String descripcion;
 
-    
-    
-    
     public String getNombre() {
         return nombre;
     }
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public String getAmbito() {
-        return ambito;
-    }
-
-    public void setAmbito(String ambito) {
-        this.ambito = ambito;
     }
 
     public String getDescripcion() {
@@ -49,7 +35,6 @@ public class Estado {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-    
     
     
     

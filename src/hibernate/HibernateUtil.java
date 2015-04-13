@@ -41,6 +41,10 @@ public class HibernateUtil {
              conf.addAnnotatedClass(models.pago.Descuento.class);
              conf.addAnnotatedClass(models.pago.Pago.class);
              
+             conf.addPackage("models.institucion");
+             conf.addAnnotatedClass(models.institucion.InstitucionEducativa.class);
+             conf.addAnnotatedClass(models.institucion.Turno.class);
+             conf.addAnnotatedClass(models.institucion.InstitucionPorAlumno.class);
          
             sessionFactory = conf.buildSessionFactory();
             session = sessionFactory.openSession();

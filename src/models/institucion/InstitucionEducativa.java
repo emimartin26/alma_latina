@@ -4,26 +4,24 @@
  * and open the template in the editor.
  */
 
-package models.inscripcion;
+package models.institucion;
 
 import javax.persistence.*;
+import models.ubicacion.Direccion;
 /**
  *
  * @author EMILIANO
  */
 @Entity
-@Table(name = "estado")
-public class Estado {
+@Table(name = "institucionEducativa")
+public class InstitucionEducativa {
     @Id
     @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
     private long id;
     
     private String nombre;
-    private String ambito;
-    private String descripcion; 
-    
-
-    
+    @OneToOne(targetEntity = Direccion.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Direccion direccion;       
     
     
     public String getNombre() {
@@ -34,21 +32,14 @@ public class Estado {
         this.nombre = nombre;
     }
 
-    public String getAmbito() {
-        return ambito;
+    public Direccion getDireccion() {
+        return direccion;
     }
 
-    public void setAmbito(String ambito) {
-        this.ambito = ambito;
+    public void setDireccion(Direccion direccion) {
+        this.direccion = direccion;
     }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
+     
     
     
     
