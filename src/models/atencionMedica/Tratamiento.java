@@ -6,11 +6,18 @@
 
 package models.atencionMedica;
 
+import javax.persistence.*;
+
 /**
  *
- * @author emiliano
+ * @author EMILIANO
  */
-public class Tratamiento {
+@Entity
+@Table(name = "tratamiento")
+public class Tratamiento{
+    @Id
+    @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
+    private long id;
     
     private String nombre;
     private String detalle;

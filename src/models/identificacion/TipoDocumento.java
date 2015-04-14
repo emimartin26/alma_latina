@@ -6,12 +6,19 @@
 
 package models.identificacion;
 
+import javax.persistence.*;
+
 /**
  *
- * @author emiliano
+ * @author EMILIANO
  */
-public class TipoDocumento {
-    
+@Entity
+@Table(name = "tipoDocumento")
+public class TipoDocumento{
+    @Id
+    @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
+    private long id;
+
     private String nombre;
     private String  detalle;
 

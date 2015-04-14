@@ -10,6 +10,7 @@ import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
+import models.Alumno.Alumno;
 import models.inscripcion.Cuota;
 /**
  *
@@ -25,7 +26,8 @@ public class Pago {
     @OneToOne(targetEntity = Descuento.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Descuento descuento;
     
-    private String referenciarAlumno;
+    @OneToMany(targetEntity = Alumno.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Alumno> alumnos;
     
     @OneToMany(targetEntity = Cuota.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Cuota> coutas;
@@ -34,7 +36,7 @@ public class Pago {
     
     public Pago() {
         this.coutas=new <Cuota> HashSet();
-
+        this.alumnos=new <Alumno> HashSet();
     }
 
     public Descuento getDescuento() {
@@ -45,13 +47,14 @@ public class Pago {
         this.descuento = descuento;
     }
 
-    public String getReferenciarAlumno() {
-        return referenciarAlumno;
+    public Set<Alumno> getAlumnos() {
+        return alumnos;
     }
 
-    public void setReferenciarAlumno(String referenciarAlumno) {
-        this.referenciarAlumno = referenciarAlumno;
+    public void setAlumnos(Set<Alumno> alumnos) {
+        this.alumnos = alumnos;
     }
+
 
     public Set<Cuota> getCoutas() {
         return coutas;
