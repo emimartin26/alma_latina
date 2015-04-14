@@ -1,5 +1,7 @@
 package hibernate;
 
+import Utilidades.Propiedades;
+import java.util.Properties;
 import javax.swing.JOptionPane;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -16,13 +18,14 @@ public class HibernateUtil {
             //sessionFactory = new AnnotationConfiguration().configure().buildSessionFactory();
             AnnotationConfiguration conf = new AnnotationConfiguration();
 
+            Properties prop = Propiedades.getPropiedades();
             conf.setProperty("hibernate.connection.driver_class", "org.postgresql.Driver");
             conf.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
-            conf.setProperty("hibernate.connection.url", "jdbc:postgresql://localhost:5432/almaLatina");
+            conf.setProperty("hibernate.connection.url", "jdbc:postgresql://localhost:5432/"+ prop.getProperty("dbname"));
 
 
-            conf.setProperty("hibernate.connection.username","postgres");// Colocar Usuario y contraseña de postgresql
-            conf.setProperty("hibernate.connection.password", "35638081");
+            conf.setProperty("hibernate.connection.username",prop.getProperty("dbuser"));// Colocar Usuario y contraseña de postgresql
+            conf.setProperty("hibernate.connection.password", prop.getProperty("dbpassword"));
 
 
             conf.setProperty("hibernate.connection.pool_size", "10");
