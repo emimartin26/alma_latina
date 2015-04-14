@@ -41,10 +41,44 @@ public class HibernateUtil {
              conf.addAnnotatedClass(models.pago.Descuento.class);
              conf.addAnnotatedClass(models.pago.Pago.class);
              
+             conf.addPackage("models.ubicacion");
+             conf.addAnnotatedClass(models.ubicacion.Pais.class);
+             conf.addAnnotatedClass(models.ubicacion.Provincia.class);
+             conf.addAnnotatedClass(models.ubicacion.Localidad.class);
+             conf.addAnnotatedClass(models.ubicacion.Direccion.class);
+             
+             conf.addPackage("models.mutual");
+             conf.addAnnotatedClass(models.mutual.Mutual.class);
+             
+             conf.addPackage("models.turno");
+             conf.addAnnotatedClass(models.institucion.Turno.class);
+
+             conf.addPackage("models.telefono");
+             conf.addAnnotatedClass(models.telefono.TipoTelefono.class); 
+             conf.addAnnotatedClass(models.telefono.Telefono.class);
+             
+             conf.addPackage("models.tutor");
+             conf.addAnnotatedClass(models.tutor.Tutor.class); 
+                        
+             conf.addPackage("models.atencionMedica");
+             conf.addAnnotatedClass(models.atencionMedica.Tratamiento.class);
+             conf.addAnnotatedClass(models.atencionMedica.Alergia.class);            
+             
+             conf.addPackage("models.grupo");
+             conf.addAnnotatedClass(models.grupo.GrupoSanguineo.class);
+             
+             conf.addPackage("models.identificacion");
+             conf.addAnnotatedClass(models.identificacion.TipoDocumento.class);
+             conf.addAnnotatedClass(models.identificacion.Documento.class);
+             
              conf.addPackage("models.institucion");
              conf.addAnnotatedClass(models.institucion.InstitucionEducativa.class);
              conf.addAnnotatedClass(models.institucion.Turno.class);
              conf.addAnnotatedClass(models.institucion.InstitucionPorAlumno.class);
+             
+             conf.addPackage("models.alumno");
+             conf.addAnnotatedClass(models.Alumno.Alumno.class);
+
          
             sessionFactory = conf.buildSessionFactory();
             session = sessionFactory.openSession();

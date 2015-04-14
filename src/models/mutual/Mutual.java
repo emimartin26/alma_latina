@@ -6,11 +6,19 @@
 
 package models.mutual;
 
+import javax.persistence.*;
+
 /**
  *
- * @author emiliano
+ * @author EMILIANO
  */
-public class Mutual {
+@Entity
+@Table(name = "mutual")
+public class Mutual{
+    @Id
+    @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
+    private long id;
+    
     private String nombre;
     private String descripcion;
 

@@ -6,18 +6,30 @@
 
 package models.atencionMedica;
 
+import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.*;
 
 /**
  *
- * @author emiliano
+ * @author EMILIANO
  */
-public class Alergia {
+@Entity
+@Table(name = "alergia")
+public class Alergia{
+    @Id
+    @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
+    private long id;
     
     private String descripcion;
     private String nombre;
+      
+    @OneToMany(targetEntity = Tratamiento.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Tratamiento> tratamientos;
-
+    
+    public Alergia() {
+        this.tratamientos=new <Tratamiento> HashSet();
+    }
     public String getDescripcion() {
         return descripcion;
     }

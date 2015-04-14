@@ -30,7 +30,7 @@ public class Inscripcion{
     @OneToOne(targetEntity = Estado.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Estado estado;
     
-        @OneToMany(targetEntity = Cuota.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(targetEntity = Cuota.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Cuota> coutas;
     
     private Date fecha;

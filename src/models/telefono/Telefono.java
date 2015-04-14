@@ -6,14 +6,22 @@
 
 package models.telefono;
 
+import javax.persistence.*;
 /**
  *
- * @author emiliano
+ * @author EMILIANO
  */
+@Entity
+@Table(name = "telefono")
 public class Telefono {
+    @Id
+    @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
+    private long id;
     
     private String numero;
     private String descripcion;
+    
+    @OneToOne(targetEntity = TipoTelefono.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private TipoTelefono tipo;
 
     public String getNumero() {

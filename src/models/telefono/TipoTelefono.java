@@ -5,12 +5,17 @@
  */
 
 package models.telefono;
-
+import javax.persistence.*;
 /**
  *
  * @author emiliano
  */
+@Entity
+@Table(name = "tipoTelefono")
 public class TipoTelefono {
+    @Id
+    @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
+    private long id;
     
     private String nombre;
     private String detalle;

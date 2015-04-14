@@ -6,13 +6,22 @@
 
 package models.ubicacion;
 
+import javax.persistence.*;
 /**
  *
- * @author emiliano
+ * @author EMILIANO
  */
+@Entity
+@Table(name = "localidad")
+
 public class Localidad {
+    @Id
+    @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
+    private long id;
+    
     private String nombre;
     private String descripcion;
+    @OneToOne(targetEntity = Provincia.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Provincia provincia;
 
     public String getNombre() {

@@ -6,14 +6,22 @@
 
 package models.identificacion;
 
+import javax.persistence.*;
+
 /**
  *
- * @author emiliano
+ * @author EMILIANO
  */
-public class Documento {
-    
-    private String numero;
+@Entity
+@Table(name = "documento")
+public class Documento{
+    @Id
+    @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
+    private long id;
+    @OneToOne(targetEntity = TipoDocumento.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private TipoDocumento tipo;
+    private String numero;
+
 
     public String getNumero() {
         return numero;

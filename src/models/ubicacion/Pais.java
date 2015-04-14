@@ -5,12 +5,18 @@
  */
 
 package models.ubicacion;
-
+import javax.persistence.*;
 /**
  *
- * @author emiliano
+ * @author EMILIANO
  */
+@Entity
+@Table(name = "pais")
 public class Pais {
+    @Id
+    @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
+    private long id;
+    
     private String nombre;
     private String descripcion;
 

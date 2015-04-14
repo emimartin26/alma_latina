@@ -6,12 +6,19 @@
 
 package models.grupo;
 
+import javax.persistence.*;
+
 /**
  *
- * @author emiliano
+ * @author EMILIANO
  */
-public class GrupoSanguineo {
-    
+@Entity
+@Table(name = "grupoSangineo")
+public class GrupoSanguineo{
+    @Id
+    @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
+    private long id;
+       
     private String factor;
     private String tipo;
 
