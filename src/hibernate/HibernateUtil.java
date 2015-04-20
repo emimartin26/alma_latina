@@ -15,10 +15,11 @@ public class HibernateUtil {
 
     public static void inicializar() {
         try {
+            Properties prop =  new Propiedades().getPropiedades();
             //sessionFactory = new AnnotationConfiguration().configure().buildSessionFactory();
             AnnotationConfiguration conf = new AnnotationConfiguration();
 
-            Properties prop = Propiedades.getPropiedades();
+            
             conf.setProperty("hibernate.connection.driver_class", "org.postgresql.Driver");
             conf.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
             conf.setProperty("hibernate.connection.url", "jdbc:postgresql://localhost:5432/"+ prop.getProperty("dbname"));
