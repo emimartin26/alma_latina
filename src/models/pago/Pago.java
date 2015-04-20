@@ -26,8 +26,7 @@ public class Pago {
     @OneToOne(targetEntity = Descuento.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Descuento descuento;
     
-    @OneToMany(targetEntity = Alumno.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Alumno> alumnos;
+
     
     @OneToMany(targetEntity = Cuota.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Cuota> coutas;
@@ -36,7 +35,6 @@ public class Pago {
     
     public Pago() {
         this.coutas=new <Cuota> HashSet();
-        this.alumnos=new <Alumno> HashSet();
     }
 
     public Descuento getDescuento() {
@@ -45,14 +43,6 @@ public class Pago {
 
     public void setDescuento(Descuento descuento) {
         this.descuento = descuento;
-    }
-
-    public Set<Alumno> getAlumnos() {
-        return alumnos;
-    }
-
-    public void setAlumnos(Set<Alumno> alumnos) {
-        this.alumnos = alumnos;
     }
 
 

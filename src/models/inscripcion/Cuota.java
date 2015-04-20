@@ -24,4 +24,29 @@ public class Cuota {
     
     private Date fechaVencimiento;
     private int numeroDeCuota;  
+
+    public Estado getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Estado estado) {
+        this.estado = estado;
+    }
+
+    public Date getFechaVencimiento() {
+        return fechaVencimiento;
+    }
+
+    public void setFechaVencimiento(Date fechaVencimiento) {
+        this.fechaVencimiento = fechaVencimiento;
+    }
+
+    public int getNumeroDeCuota() {
+        return numeroDeCuota;
+    }
+
+    public void setNumeroDeCuota(int numeroDeCuota) {
+        this.numeroDeCuota = numeroDeCuota;
+    }
+    
 }

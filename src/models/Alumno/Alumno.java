@@ -84,6 +84,14 @@ public class Alumno {
     public void setMutuales(Set<Mutual> mutuales) {
         this.mutuales = mutuales;
     }
+
+    public Tutor getTutor() {
+        return tutor;
+    }
+
+    public void setTutor(Tutor tutor) {
+        this.tutor = tutor;
+    }
     
     
 }
