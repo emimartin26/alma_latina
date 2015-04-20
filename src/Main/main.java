@@ -26,8 +26,8 @@ public class main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        //FrmPrincipal f = new FrmPrincipal();
-        //f.setVisible(true);
+        FrmPrincipal f = new FrmPrincipal();
+        f.setVisible(true);
         HibernateUtil.inicializar();
         //config();
 
