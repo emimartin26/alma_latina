@@ -5,6 +5,7 @@
  */
 package Main;
 
+import controllers.principal.ControllerPrincipal;
 import gui.FrmPrincipal;
 import hibernate.GestorHibernate;
 import hibernate.HibernateUtil;
@@ -26,9 +27,9 @@ public class main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        FrmPrincipal f = new FrmPrincipal();
-        f.setVisible(true);
         HibernateUtil.inicializar();
+        ControllerPrincipal contr = new ControllerPrincipal();
+        contr.abrir();
         //config();
 
     }

@@ -48,6 +48,10 @@ public class Localidad {
         this.provincia = provincia;
     }
     
+    @Override
+    public String toString(){
+        return this.nombre;
+    }
     
     
 }

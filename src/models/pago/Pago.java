@@ -10,7 +10,7 @@ import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
-import models.Alumno.Alumno;
+import models.alumno.Alumno;
 import models.inscripcion.Cuota;
 /**
  *

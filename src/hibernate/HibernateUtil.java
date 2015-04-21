@@ -81,7 +81,7 @@ public class HibernateUtil {
              conf.addAnnotatedClass(models.institucion.InstitucionPorAlumno.class);
              
              conf.addPackage("models.alumno");
-             conf.addAnnotatedClass(models.Alumno.Alumno.class);
+             conf.addAnnotatedClass(models.alumno.Alumno.class);
 
          
             sessionFactory = conf.buildSessionFactory();

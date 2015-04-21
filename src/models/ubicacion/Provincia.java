@@ -50,5 +50,8 @@ public class Provincia {
         this.pais = pais;
     }
     
+    public String toString(){
+        return this.nombre;
+    }
     
 }

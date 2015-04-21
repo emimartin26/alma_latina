@@ -11,6 +11,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import javax.swing.JFrame;
 import org.jvnet.substance.SubstanceLookAndFeel;
+import views.FrmAlumno;
 
 /**
  *
@@ -68,6 +69,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
         setTitle("Alma Latina ");
 
         jMenu1.setText("Gestion Alumnos");
+        jMenu1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu1ActionPerformed(evt);
+            }
+        });
 
         jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons/sheet3.png"))); // NOI18N
         jMenuItem1.setText("Nuevo Alumno");
@@ -131,9 +137,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-       FrmAlumno2 f = new FrmAlumno2();
-       Component add = this.getEscritorio().add(f);
-       f.setVisible(true);
+     
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
@@ -141,6 +145,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
        Component add = this.getEscritorio().add(f);
        f.setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu1ActionPerformed
     private void configSkin() {
         JFrame.setDefaultLookAndFeelDecorated(true);
         SubstanceLookAndFeel.setSkin("org.jvnet.substance.skin.OfficeSilver2007Skin");
