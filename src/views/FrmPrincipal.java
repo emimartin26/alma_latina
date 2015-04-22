@@ -74,7 +74,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
         menuItemDelAl = new javax.swing.JMenuItem();
         menuItemListAlum = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem5 = new javax.swing.JMenuItem();
+        registrarCuota = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        menuItemReinscripcionActionPerformed = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Alma Latina ");
@@ -106,16 +108,28 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         jMenu2.setText("Gestion Cuotas");
 
-        jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons/clipboard105 (1).png"))); // NOI18N
-        jMenuItem5.setText("Registrar cuota");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+        registrarCuota.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons/clipboard105 (1).png"))); // NOI18N
+        registrarCuota.setText("Registrar cuota");
+        registrarCuota.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
+                registrarCuotaActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem5);
+        jMenu2.add(registrarCuota);
 
         jMenuBar1.add(jMenu2);
+
+        jMenu3.setText("Gestion Inscripcion");
+
+        menuItemReinscripcionActionPerformed.setText("Reinscripción");
+        menuItemReinscripcionActionPerformed.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemReinscripcionActionPerformedActionPerformed(evt);
+            }
+        });
+        jMenu3.add(menuItemReinscripcionActionPerformed);
+
+        jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
 
@@ -133,15 +147,17 @@ public class FrmPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-       FrmGestionCouta f = new FrmGestionCouta();
-       Component add = this.getEscritorio().add(f);
-       f.setVisible(true);
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
+    private void registrarCuotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarCuotaActionPerformed
+        this.getController().abrirFrmGestionCouta();
+    }//GEN-LAST:event_registrarCuotaActionPerformed
 
     private void menuItemNewAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemNewAlumnoActionPerformed
         this.getController().abrirFrmAlumno();
     }//GEN-LAST:event_menuItemNewAlumnoActionPerformed
+
+    private void menuItemReinscripcionActionPerformedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemReinscripcionActionPerformedActionPerformed
+        this.getController().abrirFrmInscripcion();
+    }//GEN-LAST:event_menuItemReinscripcionActionPerformedActionPerformed
     private void configSkin() {
         JFrame.setDefaultLookAndFeelDecorated(true);
         SubstanceLookAndFeel.setSkin("org.jvnet.substance.skin.OfficeSilver2007Skin");
@@ -151,11 +167,13 @@ public class FrmPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem menuItemDelAl;
     private javax.swing.JMenuItem menuItemListAlum;
     private javax.swing.JMenuItem menuItemModAlumno;
     private javax.swing.JMenuItem menuItemNewAlumno;
+    private javax.swing.JMenuItem menuItemReinscripcionActionPerformed;
+    private javax.swing.JMenuItem registrarCuota;
     // End of variables declaration//GEN-END:variables
 }

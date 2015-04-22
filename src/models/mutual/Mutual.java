@@ -7,7 +7,6 @@
 package models.mutual;
 
 import javax.persistence.*;
-
 /**
  *
  * @author EMILIANO

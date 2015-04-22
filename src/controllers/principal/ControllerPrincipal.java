@@ -7,6 +7,8 @@ package controllers.principal;
 
 import Utilidades.Util;
 import controllers.alumno.ControllerAlumno;
+import controllers.inscripcion.ControllerInscripcion;
+import controllers.pago.ControllerPago;
 import javax.swing.JDesktopPane;
 import views.FrmPrincipal;
 
@@ -43,6 +45,18 @@ public class ControllerPrincipal {
     
     public void abrirFrmAlumno(){
         ControllerAlumno controller = new ControllerAlumno(this.getEscritorio());
+        controller.abrir();
+        controller.inicializarDatos();
+        
+    }
+    public void abrirFrmInscripcion(){
+        ControllerInscripcion controller = new ControllerInscripcion(this.getEscritorio());
+        controller.abrir();
+        controller.inicializarDatos();
+        
+    }
+     public void abrirFrmGestionCouta(){
+        ControllerPago controller = new ControllerPago(this.getEscritorio());
         controller.abrir();
         controller.inicializarDatos();
         
