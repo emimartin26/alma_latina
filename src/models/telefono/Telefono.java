@@ -19,7 +19,7 @@ public class Telefono {
     private long id;
     
     private String numero;
-    private String descripcion;
+    private String caracteristica;
     
     @OneToOne(targetEntity = TipoTelefono.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private TipoTelefono tipo;
@@ -32,12 +32,12 @@ public class Telefono {
         this.numero = numero;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public String getCaracteristica() {
+        return caracteristica;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setCaracteristica(String caracteristica) {
+        this.caracteristica = caracteristica;
     }
 
     public TipoTelefono getTipo() {
@@ -46,6 +46,11 @@ public class Telefono {
 
     public void setTipo(TipoTelefono tipo) {
         this.tipo = tipo;
+    }
+    
+    @Override
+    public String toString(){
+        return this.caracteristica + " - " +this.numero;
     }
     
     

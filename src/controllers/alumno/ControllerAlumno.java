@@ -7,12 +7,12 @@ package controllers.alumno;
 
 import Utilidades.GestorCombo;
 import controllers.Controller;
-import controllers.GestorConsultas;
+import java.util.List;
 import javax.swing.JComboBox;
 import javax.swing.JDesktopPane;
 import models.alumno.GestorAlumno;
-import models.ubicacion.Localidad;
-import models.ubicacion.Provincia;
+import models.identificacion.GestorTipoDocumento;
+import models.ubicacion.GestorLocalidad;
 import views.FrmAlumno;
 
 /**
@@ -22,9 +22,27 @@ import views.FrmAlumno;
 public class ControllerAlumno extends Controller {
 
     private GestorAlumno model;
+    private ControllerTelefono controllerTelefono;
+
+    public ControllerAlumno() {
+
+    }
+
+    public void crearControllerAlumno() {
+        this.controllerTelefono = new ControllerTelefono(this.getFormularioEspecifico());
+    }
+
+    public ControllerTelefono getControllerTelefono() {
+        return controllerTelefono;
+    }
+
+    public void setControllerTelefono(ControllerTelefono controllerTelefono) {
+        this.controllerTelefono = controllerTelefono;
+    }
 
     public FrmAlumno getFormularioEspecifico() {
         return (FrmAlumno) this.getFrame(); //Casteo de JiInternalFrame(Padre) a FrmAlumno(Hijo)
+
     }
 
     public ControllerAlumno(JDesktopPane escritorio) {
@@ -32,23 +50,46 @@ public class ControllerAlumno extends Controller {
         this.setFrame(new FrmAlumno(this));
     }
 
+    public void cargar() {
+        this.abrir();
+        this.crearControllerAlumno();
+        this.inicializarDatos();
+    }
+
     public void abrir() {
         this.getEscritorio().add(this.getFrame());
         this.getFrame().setVisible(true);
     }
 
+    public void addTelefono() {
+        this.getControllerTelefono().addTelefono();
+    }
+
+    public void removeTelefono() {
+        this.getControllerTelefono().removeTelefono();
+    }
+
     public void cargarLocalidades() {
         JComboBox cmbLocalidad = this.getFormularioEspecifico().getCmbLocalidad();
-        GestorConsultas gestor = new GestorConsultas(Localidad.class, "localidad");
-        gestor.createAlias("localidad.provincia", "provincia");
-        gestor.addRestriccion("provincia.nombre", "Córdoba");
+        GestorLocalidad g = new GestorLocalidad();
+        List localidades = g.getLocalidadesXProv("Córdoba");
         GestorCombo ges = new GestorCombo();
-        ges.cargarCombo(gestor.resultConsulta(), cmbLocalidad);
+        ges.cargarCombo(localidades, cmbLocalidad);
 
     }
-    
-    public void inicializarDatos(){
+
+    public void cargarTiposDocumentos() {
+        JComboBox cmbTiposDoc = this.getFormularioEspecifico().getCmbTipoDni();
+        GestorTipoDocumento g = new GestorTipoDocumento();
+        List tipos = g.getTiposDoc();
+        GestorCombo ges = new GestorCombo();
+        ges.cargarCombo(tipos, cmbTiposDoc);
+
+    }
+
+    public void inicializarDatos() {
         this.cargarLocalidades();
+        this.cargarTiposDocumentos();
     }
 
 }

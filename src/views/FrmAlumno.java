@@ -949,11 +949,11 @@ public class FrmAlumno extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtCaractTelefonoKeyTyped
 
     private void btnNuevoTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoTelefonoActionPerformed
-
+        this.getController().addTelefono();
     }//GEN-LAST:event_btnNuevoTelefonoActionPerformed
 
     private void btnEliminarTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarTelefonoActionPerformed
-
+        this.getController().removeTelefono();
     }//GEN-LAST:event_btnEliminarTelefonoActionPerformed
 
     private void txtAlturaCalleKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAlturaCalleKeyTyped

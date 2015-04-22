@@ -15,22 +15,22 @@ import models.InterfaceAbm;
 public class GestorTelefono extends GestorHibernate implements InterfaceAbm {
     private Telefono model;
 
-    public GestorTelefono(Telefono model) {
-        this.model = model;
+    public GestorTelefono() {
+        this.model = new Telefono();
     }
 
     public Telefono getModel() {
         return model;
     }
 
-    public void setModel(Telefono model) {
-        this.model = model;
+    public void setTelefono(Telefono tel) {
+        this.model = tel;
     }
     public void setNumero(String numero) {
         this.model.setNumero(numero);
     }
-    public void setDescripcion(String descripcion) {
-        this.model.setDescripcion(descripcion);
+    public void setCaracteristica(String descripcion) {
+        this.model.setCaracteristica(descripcion);
     }
     
     

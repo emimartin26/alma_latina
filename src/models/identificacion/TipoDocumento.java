@@ -39,6 +39,9 @@ public class TipoDocumento{
     }
     
     
-    
+    @Override
+    public String toString(){
+        return this.nombre;
+    }
     
 }

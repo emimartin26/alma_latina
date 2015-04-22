@@ -8,12 +8,32 @@ package Utilidades;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
+import javax.swing.ListModel;
 
 /**
  *
  * @author Emiliano
  */
 public class GestorLista {
+
+    private DefaultListModel listModel;
+
+    public void newDefaultListModel() {
+        this.listModel = new DefaultListModel();
+    }
+
+    /**
+     * Le paso como parametro un ListModel y me devuelve un DefaulListModel
+     * @param list
+     * @return DefaulListModel
+     */
+    public DefaultListModel getDefaultListModelBaseListModel(ListModel list) {
+        DefaultListModel model = new DefaultListModel();
+        for (int i = 0; i < list.getSize(); i++) {
+            model.addElement(list.getElementAt(i));
+        }
+        return model;
+    }
 
     /**
      *
@@ -28,6 +48,16 @@ public class GestorLista {
         }
         listInterfaz.setModel(model);
 
+    }
+
+    public void llenarListBaseModel(DefaultListModel listObject, JList listInterfaz) {
+        listInterfaz.setModel(listObject);
+
+    }
+
+    public DefaultListModel getListModel() {
+        DefaultListModel model = new DefaultListModel();
+        return model;
     }
 
     /**

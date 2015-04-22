@@ -31,6 +31,8 @@ public class main {
         ControllerPrincipal contr = new ControllerPrincipal();
         contr.abrir();
         //config();
+//        GeneradorObjetos g = new GeneradorObjetos();
+//        g.cargarTiposDocumentos();
 
     }
 

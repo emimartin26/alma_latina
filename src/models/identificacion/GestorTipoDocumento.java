@@ -5,7 +5,9 @@
  */
 
 package models.identificacion;
+import controllers.GestorConsultas;
 import hibernate.GestorHibernate;
+import java.util.List;
 import javax.swing.JOptionPane;
 import models.InterfaceAbm;
 /**
@@ -15,8 +17,8 @@ import models.InterfaceAbm;
 public class GestorTipoDocumento extends GestorHibernate implements InterfaceAbm{
     private TipoDocumento model;
 
-    public GestorTipoDocumento(TipoDocumento model) {
-        this.model = model;
+    public GestorTipoDocumento() {
+        this.model = new TipoDocumento();
     }
 
     public TipoDocumento getModel() {
@@ -32,6 +34,13 @@ public class GestorTipoDocumento extends GestorHibernate implements InterfaceAbm
     public void setDetalle(String detalle){
         this.model.setDetalle(detalle);
     }
+    
+    public List getTiposDoc(){
+        GestorConsultas g = new GestorConsultas(TipoDocumento.class, "tipodocumento");
+        return g.resultConsulta();
+    }
+    
+    
      @Override
     public void guardar() {
         try {

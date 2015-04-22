@@ -3,20 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package models.ubicacion;
 
+import controllers.GestorConsultas;
 import hibernate.GestorHibernate;
+import java.util.List;
 import javax.swing.JOptionPane;
 import models.InterfaceAbm;
-
 
 /**
  *
  * @author emiliano
  */
 public class GestorLocalidad extends GestorHibernate implements InterfaceAbm {
-    
+
     private Localidad model;
 
     public GestorLocalidad() {
@@ -38,8 +38,16 @@ public class GestorLocalidad extends GestorHibernate implements InterfaceAbm {
     public void setDescripcion(String descrip) {
         this.model.setDescripcion(descrip);
     }
-    public void setProvincia(Provincia prov){
+
+    public void setProvincia(Provincia prov) {
         this.model.setProvincia(prov);
+    }
+
+    public List getLocalidadesXProv(String nombreProvincia) {
+        GestorConsultas gestor = new GestorConsultas(Localidad.class, "localidad");
+        gestor.createAlias("localidad.provincia", "provincia");
+        gestor.addRestriccion("provincia.nombre", nombreProvincia);
+        return gestor.resultConsulta();
     }
 
     @Override
@@ -76,12 +84,12 @@ public class GestorLocalidad extends GestorHibernate implements InterfaceAbm {
 
     @Override
     public void listar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
     }
 
     @Override
     public void imprimir() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }
