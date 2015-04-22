@@ -21,11 +21,12 @@ import views.FrmAlumno;
  */
 public class ControllerAlumno extends Controller {
 
-    private GestorAlumno model;    
+    private GestorAlumno model;
 
     public FrmAlumno getFormularioEspecifico() {
         return (FrmAlumno) this.getFrame(); //Casteo de JiInternalFrame(Padre) a FrmAlumno(Hijo)
     }
+
     public ControllerAlumno(JDesktopPane escritorio) {
         this.setEscritorio(escritorio);
         this.setFrame(new FrmAlumno(this));
@@ -35,17 +36,19 @@ public class ControllerAlumno extends Controller {
         this.getEscritorio().add(this.getFrame());
         this.getFrame().setVisible(true);
     }
-    public  void cargarLocalidades(){
-        GestorConsultas g = new GestorConsultas(Provincia.class);
-        g.addFiltro("nombre", "Córdoba");
-        Provincia p = (Provincia) g.resultConsulta().get(0);
-        
-        JComboBox cmbLocalidad  =  this.getFormularioEspecifico().getCmbLocalidad();
-        GestorConsultas gestor = new GestorConsultas(Localidad.class);
-        gestor.addFiltroPorObjeto("provincia",p);
+
+    public void cargarLocalidades() {
+        JComboBox cmbLocalidad = this.getFormularioEspecifico().getCmbLocalidad();
+        GestorConsultas gestor = new GestorConsultas(Localidad.class, "localidad");
+        gestor.createAlias("localidad.provincia", "provincia");
+        gestor.addRestriccion("provincia.nombre", "Córdoba");
         GestorCombo ges = new GestorCombo();
         ges.cargarCombo(gestor.resultConsulta(), cmbLocalidad);
-        
+
+    }
+    
+    public void inicializarDatos(){
+        this.cargarLocalidades();
     }
 
 }

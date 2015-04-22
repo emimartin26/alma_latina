@@ -4,7 +4,6 @@
  */
 package controllers;
 
-
 import hibernate.HibernateUtil;
 import java.util.List;
 import org.hibernate.Criteria;
@@ -29,10 +28,12 @@ public class GestorConsultas {
      * En el constructor se pasa como parametro la clase sobre la cual vamos
      * hacer consultas y se setea la sesion global y sobre esa sesion se crea un
      * criterio.
+     * @param clase
+     * @param alias
      */
-    public GestorConsultas(Class clase) {
+    public GestorConsultas(Class clase, String alias) {
         this.setSession(HibernateUtil.getSession());
-        this.setCrit(this.crearCriterio(clase));
+        this.setCrit(this.crearCriterio(clase,alias));
         //this.restriccionNoBorrado();
     }
 
@@ -40,8 +41,8 @@ public class GestorConsultas {
      *
      * Crea un criterio de busqueda sobre la sesion global.
      */
-    private Criteria crearCriterio(Class clase) {
-        return this.getSession().createCriteria(clase);
+    private Criteria crearCriterio(Class clase, String alias) {
+        return this.getSession().createCriteria(clase, alias);
     }
 
     private Session getSession() {
@@ -76,12 +77,13 @@ public class GestorConsultas {
     public void restriccionNoBorrado() {
         this.getCrit().add(Restrictions.eq("estado", 0));
     }
+
     /**
      *
      * Se le agrega al criterio una restriccion absoluta.
-     */    
-    public void addRestriccion(String campo, String campoFiltro){
-        this.getCrit().add(Restrictions.eq(campo,campoFiltro));
+     */
+    public void addRestriccion(String campo, String campoFiltro) {
+        this.getCrit().add(Restrictions.eq(campo, campoFiltro));
     }
 
     /**
@@ -94,29 +96,31 @@ public class GestorConsultas {
     public void addFiltro(String campo, String campoFiltro) {
         this.getCrit().add(Restrictions.ilike(campo, campoFiltro, MatchMode.START));
     }
-       /**
-     *
-     * Este metodo recibe como parametro un string y un entero: el primero es el nombre del
-     * atributo de la clase por el cual queremos filtrar y el otro es el entero
-     * sobre el cual vamos filtrando. Y agrega el filtro al criterio de
-     * busqueda.
-     */
-    public void addFiltroInt(String campo, int numero){
-        this.getCrit().add(Restrictions.eq(campo, numero));
-    }
+
     /**
      *
-     * Este metodo recibe como parametro el nombre del atribito por el cual queremos
-     * filtrar y un objeto sobre el cual se consultara.
+     * Este metodo recibe como parametro un string y un entero: el primero es el
+     * nombre del atributo de la clase por el cual queremos filtrar y el otro es
+     * el entero sobre el cual vamos filtrando. Y agrega el filtro al criterio
+     * de busqueda.
      */
-    public void addFiltroPorObjeto(String nombre,Object objeto) {
-        this.getCrit().add(Restrictions.eq(nombre, objeto));        
+    public void addFiltroInt(String campo, int numero) {
+        this.getCrit().add(Restrictions.eq(campo, numero));
     }
-   
-    public void add(String par){
+
+    /**
+     *
+     * Este metodo recibe como parametro el nombre del atribito por el cual
+     * queremos filtrar y un objeto sobre el cual se consultara.
+     */
+    public void addFiltroPorObjeto(String nombre, Object objeto) {
+        this.getCrit().add(Restrictions.eq(nombre, objeto));
+    }
+
+    public void add(String par) {
         this.getCrit().setFetchMode(par, FetchMode.JOIN);
     }
-    
+
     /**
      *
      * Este metodo recibe como parametro el nombre del campo al cual queremos
@@ -135,15 +139,30 @@ public class GestorConsultas {
         this.getCrit().addOrder(Order.desc(campo));
     }
 
+    /***
+     * 
+     * @param par1
+     * @param par2
+     * Este metodo nos permite crear un alias para referenciar una tabla al realizar un
+     * innner join
+     */
+    public void createAlias(String par1, String par2) {
+        this.getCrit().createAlias(par1, par2);
+    }
+
     /**
      *
      * Este metodo retorna una lista con todas las restricciones que se fueron
      * agregando.
+     * @return 
      */
     public List resultConsulta() {
         return this.getCrit().list();
     }
+
     public Object resultConsultaObject() {
         return this.getCrit().uniqueResult();
     }
+
+    
 }

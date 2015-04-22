@@ -44,6 +44,7 @@ public class ControllerPrincipal {
     public void abrirFrmAlumno(){
         ControllerAlumno controller = new ControllerAlumno(this.getEscritorio());
         controller.abrir();
+        controller.inicializarDatos();
         
     }
     
