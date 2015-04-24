@@ -48,8 +48,9 @@ public class GestorLocalidad extends GestorHibernate implements InterfaceAbm {
         gestor.createAlias("localidad.provincia", "provincia");
         gestor.addRestriccion("provincia.nombre", nombreProvincia);
         return gestor.resultConsulta();
+        
     }
-
+    
     @Override
     public void guardar() {
         try {

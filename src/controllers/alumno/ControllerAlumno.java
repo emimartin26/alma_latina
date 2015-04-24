@@ -12,7 +12,6 @@ import javax.swing.JComboBox;
 import javax.swing.JDesktopPane;
 import models.alumno.GestorAlumno;
 import models.identificacion.GestorTipoDocumento;
-import models.ubicacion.GestorLocalidad;
 import views.FrmAlumno;
 
 /**
@@ -23,6 +22,7 @@ public class ControllerAlumno extends Controller {
 
     private GestorAlumno model;
     private ControllerTelefono controllerTelefono;
+    private ControllerLocalidad controllerLocalidad;
 
     public ControllerAlumno() {
 
@@ -30,10 +30,16 @@ public class ControllerAlumno extends Controller {
 
     public void crearControllerAlumno() {
         this.controllerTelefono = new ControllerTelefono(this.getFormularioEspecifico());
+        this.controllerLocalidad = new ControllerLocalidad(this.getFormularioEspecifico()); 
     }
-
+    public ControllerLocalidad getControllerLocalidad() {
+        return controllerLocalidad;
+    }
     public ControllerTelefono getControllerTelefono() {
         return controllerTelefono;
+    }
+    public void setControllerLocalidad(ControllerLocalidad controllerLocalidad) {
+        this.controllerLocalidad = controllerLocalidad;
     }
 
     public void setControllerTelefono(ControllerTelefono controllerTelefono) {
@@ -70,12 +76,7 @@ public class ControllerAlumno extends Controller {
     }
 
     public void cargarLocalidades() {
-        JComboBox cmbLocalidad = this.getFormularioEspecifico().getCmbLocalidad();
-        GestorLocalidad g = new GestorLocalidad();
-        List localidades = g.getLocalidadesXProv("Córdoba");
-        GestorCombo ges = new GestorCombo();
-        ges.cargarCombo(localidades, cmbLocalidad);
-
+        this.getControllerLocalidad().cargarLocalidades();
     }
 
     public void cargarTiposDocumentos() {
@@ -84,6 +85,7 @@ public class ControllerAlumno extends Controller {
         List tipos = g.getTiposDoc();
         GestorCombo ges = new GestorCombo();
         ges.cargarCombo(tipos, cmbTiposDoc);
+        
 
     }
 
