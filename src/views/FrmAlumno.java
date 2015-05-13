@@ -5,6 +5,7 @@
  */
 package views;
 
+import Utilidades.Util;
 import com.toedter.calendar.JDateChooser;
 import controllers.alumno.ControllerAlumno;
 import javax.swing.JButton;
@@ -30,8 +31,6 @@ public class FrmAlumno extends javax.swing.JInternalFrame {
     public ControllerAlumno getController() {
         return controller;
     }
-
- 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -133,8 +132,6 @@ public class FrmAlumno extends javax.swing.JInternalFrame {
         jPanel12 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         cmbGrupoSan = new javax.swing.JComboBox();
-        jLabel5 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
 
         setClosable(true);
         setTitle("Nuevo Alumno");
@@ -152,6 +149,11 @@ public class FrmAlumno extends javax.swing.JInternalFrame {
 
         jLabel44.setText("Apellidos");
 
+        txtApellido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtApellidoActionPerformed(evt);
+            }
+        });
         txtApellido.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtApellidoKeyTyped(evt);
@@ -593,7 +595,7 @@ public class FrmAlumno extends javax.swing.JInternalFrame {
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel15)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane3))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -618,6 +620,11 @@ public class FrmAlumno extends javax.swing.JInternalFrame {
         jLabel62.setText("Calle");
 
         checkAlumna.setText("Mismo Alumno");
+        checkAlumna.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkAlumnaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlDatosLocalidad1Layout = new javax.swing.GroupLayout(pnlDatosLocalidad1);
         pnlDatosLocalidad1.setLayout(pnlDatosLocalidad1Layout);
@@ -764,6 +771,11 @@ public class FrmAlumno extends javax.swing.JInternalFrame {
         jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder("Categoria"));
 
         cmbCategoria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ritmos Latinos", "Clasicos", "Otros" }));
+        cmbCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbCategoriaActionPerformed(evt);
+            }
+        });
 
         jScrollPane4.setViewportView(listCategoria);
 
@@ -826,23 +838,15 @@ public class FrmAlumno extends javax.swing.JInternalFrame {
 
         cmbGrupoSan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "AB", "A", "B", "0" }));
 
-        jLabel5.setText("Factor RH");
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Positivo(+)", "Negativo(-)" }));
-
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
         jPanel12Layout.setHorizontalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cmbGrupoSan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLabel4)
+                .addGap(36, 36, 36)
+                .addComponent(cmbGrupoSan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel12Layout.setVerticalGroup(
@@ -852,10 +856,6 @@ public class FrmAlumno extends javax.swing.JInternalFrame {
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(cmbGrupoSan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -891,7 +891,7 @@ public class FrmAlumno extends javax.swing.JInternalFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -917,27 +917,26 @@ public class FrmAlumno extends javax.swing.JInternalFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(pnlDatosLocalidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(18, Short.MAX_VALUE))
+                            .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
-
+        Util.soloLetras(evt); // No va a permitir ingresar numeros.
     }//GEN-LAST:event_txtNombreKeyTyped
 
     private void txtApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoKeyTyped
-
+        Util.soloLetras(evt);
     }//GEN-LAST:event_txtApellidoKeyTyped
 
     private void txtDniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDniKeyTyped
-
+        Util.soloEntero(evt);
     }//GEN-LAST:event_txtDniKeyTyped
 
     private void txtNumTelefonotxtNumTelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumTelefonotxtNumTelActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtNumTelefonotxtNumTelActionPerformed
 
     private void txtNumTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumTelefonoKeyTyped
@@ -965,19 +964,19 @@ public class FrmAlumno extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cmbLocalidadActionPerformed
 
     private void btnEliminarAlergiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarAlergiaActionPerformed
-        // TODO add your handling code here:
+        this.getController().removeAlergia();
     }//GEN-LAST:event_btnEliminarAlergiaActionPerformed
 
     private void btnNuevoAlergiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoAlergiaActionPerformed
-        // TODO add your handling code here:
+        this.getController().addAlergia();
     }//GEN-LAST:event_btnNuevoAlergiaActionPerformed
 
     private void btnEliminarTratamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarTratamientoActionPerformed
-        // TODO add your handling code here:
+        this.getController().removeTratamiento();
     }//GEN-LAST:event_btnEliminarTratamientoActionPerformed
 
     private void btnNuevoTratamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoTratamientoActionPerformed
-        // TODO add your handling code here:
+        this.getController().addTratamiento();
     }//GEN-LAST:event_btnNuevoTratamientoActionPerformed
 
     private void txtAlturaCalleTutorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAlturaCalleTutorKeyTyped
@@ -985,16 +984,28 @@ public class FrmAlumno extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtAlturaCalleTutorKeyTyped
 
     private void btnEliminarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarCategoriaActionPerformed
-        // TODO add your handling code here:
+        this.getController().removeCategoria();
     }//GEN-LAST:event_btnEliminarCategoriaActionPerformed
 
     private void btnNuevoCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoCategoriaActionPerformed
-        // TODO add your handling code here:
+        this.getController().addCategoria();
     }//GEN-LAST:event_btnNuevoCategoriaActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-         this.getController().cargarLocalidades();
+        this.getController().getDatos();
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void checkAlumnaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkAlumnaActionPerformed
+        this.getController().eventChek();
+    }//GEN-LAST:event_checkAlumnaActionPerformed
+
+    private void cmbCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCategoriaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbCategoriaActionPerformed
+
+    private void txtApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtApellidoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1018,7 +1029,6 @@ public class FrmAlumno extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox cmbTipoDni;
     private javax.swing.JComboBox cmbTurno;
     private com.toedter.calendar.JDateChooser dateFechaNacimiento;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1034,7 +1044,6 @@ public class FrmAlumno extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel45;
     private javax.swing.JLabel jLabel46;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel51;
     private javax.swing.JLabel jLabel52;
     private javax.swing.JLabel jLabel53;
@@ -1251,14 +1260,6 @@ public class FrmAlumno extends javax.swing.JInternalFrame {
 
     public void setDateFechaNacimiento(JDateChooser dateFechaNacimiento) {
         this.dateFechaNacimiento = dateFechaNacimiento;
-    }
-
-    public JComboBox getjComboBox1() {
-        return jComboBox1;
-    }
-
-    public void setjComboBox1(JComboBox jComboBox1) {
-        this.jComboBox1 = jComboBox1;
     }
 
     public JList getListAlergias() {

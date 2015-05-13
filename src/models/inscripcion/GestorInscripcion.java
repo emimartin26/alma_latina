@@ -18,8 +18,8 @@ import models.InterfaceAbm;
 public class GestorInscripcion extends GestorHibernate implements InterfaceAbm{
 private Inscripcion model;
 
-    public GestorInscripcion(Inscripcion model) {
-        this.model = model;
+    public GestorInscripcion() {
+        this.model = new Inscripcion();
     }
 
     public Inscripcion getModel() {

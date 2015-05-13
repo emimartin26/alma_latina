@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package models.ubicacion;
+
 import javax.persistence.*;
+
 /**
  *
  * @author EMILIANO
@@ -13,15 +14,16 @@ import javax.persistence.*;
 @Entity
 @Table(name = "direccion")
 public class Direccion {
+
     @Id
     @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
     private long id;
-    
+
     private int altura;
     private String calle;
     private int numDepto;
     private int piso;
-    
+
     @OneToOne(targetEntity = Localidad.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Localidad localidad;
 
@@ -64,8 +66,9 @@ public class Direccion {
     public void setLocalidad(Localidad localidad) {
         this.localidad = localidad;
     }
-    
-    
-    
-    
+
+    public String toString() {
+        return this.localidad + " " + this.calle + this.altura + " " + " " + this.piso + " " + this.numDepto;
+    }
+
 }

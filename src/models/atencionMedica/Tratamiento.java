@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package models.atencionMedica;
 
 import javax.persistence.*;
@@ -14,11 +13,12 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "tratamiento")
-public class Tratamiento{
+public class Tratamiento {
+
     @Id
     @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
     private long id;
-    
+
     private String nombre;
     private String detalle;
 
@@ -37,6 +37,10 @@ public class Tratamiento{
     public void setDetalle(String detalle) {
         this.detalle = detalle;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return this.nombre;
+    }
+
 }

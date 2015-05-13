@@ -9,6 +9,7 @@ package models.tutor;
 import hibernate.GestorHibernate;
 import javax.swing.JOptionPane;
 import models.InterfaceAbm;
+import models.ubicacion.Direccion;
 
 /**
  *
@@ -35,6 +36,11 @@ public class GestorTutor  extends GestorHibernate implements InterfaceAbm {
     public void setApellido(String apellido) {
         this.model.setApellido(apellido);
     }
+    
+    public void setDireccion(Direccion d){
+        this.model.setDireccion(d);
+    }
+    
 
 
     

@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package models.atencionMedica;
 
 import java.util.HashSet;
@@ -16,20 +15,15 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "alergia")
-public class Alergia{
+public class Alergia {
+
     @Id
     @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
     private long id;
-    
+
     private String descripcion;
     private String nombre;
-      
-    @OneToMany(targetEntity = Tratamiento.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Tratamiento> tratamientos;
-    
-    public Alergia() {
-        this.tratamientos=new <Tratamiento> HashSet();
-    }
+
     public String getDescripcion() {
         return descripcion;
     }
@@ -46,14 +40,9 @@ public class Alergia{
         this.nombre = nombre;
     }
 
-    public Set<Tratamiento> getTratamientos() {
-        return tratamientos;
+    @Override
+    public String toString() {
+        return this.nombre;
     }
 
-    public void setTratamientos(Set<Tratamiento> tratamientos) {
-        this.tratamientos = tratamientos;
-    }
-    
-    
-    
 }

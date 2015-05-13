@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package models.identificacion;
 
 import javax.persistence.*;
@@ -14,14 +13,14 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "documento")
-public class Documento{
+public class Documento {
+
     @Id
     @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
     private long id;
     @OneToOne(targetEntity = TipoDocumento.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private TipoDocumento tipo;
     private String numero;
-
 
     public String getNumero() {
         return numero;
@@ -38,7 +37,9 @@ public class Documento{
     public void setTipo(TipoDocumento tipo) {
         this.tipo = tipo;
     }
-    
-    
-    
+
+    public String toString() {
+        return this.tipo.getNombre() + " :" + this.numero;
+    }
+
 }

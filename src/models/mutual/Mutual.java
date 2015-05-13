@@ -3,21 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package models.mutual;
 
 import javax.persistence.*;
+
 /**
  *
  * @author EMILIANO
  */
 @Entity
 @Table(name = "mutual")
-public class Mutual{
+public class Mutual {
+
     @Id
     @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
     private long id;
-    
+
     private String nombre;
     private String descripcion;
 
@@ -36,7 +37,10 @@ public class Mutual{
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-    
-    
-    
+
+    @Override
+    public String toString() {
+        return this.nombre;
+    }
+
 }

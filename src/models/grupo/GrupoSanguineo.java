@@ -38,6 +38,9 @@ public class GrupoSanguineo{
         this.tipo = tipo;
     }
     
-    
+    @Override
+    public String toString(){
+        return this.tipo + " ("+this.factor+")";
+    }
     
 }

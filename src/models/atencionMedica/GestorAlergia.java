@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package models.atencionMedica;
 
 import javax.swing.JOptionPane;
@@ -11,16 +10,20 @@ import hibernate.GestorHibernate;
 import java.util.Set;
 import models.InterfaceAbm;
 
-
 /**
  *
  * @author EMILIANO
  */
-public class GestorAlergia extends GestorHibernate implements InterfaceAbm{
+public class GestorAlergia extends GestorHibernate implements InterfaceAbm {
+
     private Alergia model;
 
-    public GestorAlergia(Alergia model) {
-        this.model = model;
+    public GestorAlergia() {
+        this.model = new Alergia();
+    }
+
+    public void crearModelo() {
+        this.model = new Alergia();
     }
 
     public Alergia getModel() {
@@ -30,17 +33,18 @@ public class GestorAlergia extends GestorHibernate implements InterfaceAbm{
     public void setModel(Alergia model) {
         this.model = model;
     }
-    public void setNombre(String nombre){
+
+    public void setNombre(String nombre) {
         this.model.setNombre(nombre);
     }
-    public void setDescripcion(String descripcion){
+
+    public void setDescripcion(String descripcion) {
         this.model.setDescripcion(descripcion);
     }
-    public void setTratamientos(Set<Tratamiento> tratamientos){
-        this.model.setTratamientos(tratamientos);
-    }
-    
-@Override
+
+
+
+    @Override
     public void guardar() {
         try {
             this.guardarObjeto(this.model);
@@ -81,6 +85,5 @@ public class GestorAlergia extends GestorHibernate implements InterfaceAbm{
     public void imprimir() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-}
 
+}

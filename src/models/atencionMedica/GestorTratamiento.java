@@ -3,20 +3,26 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package models.atencionMedica;
+
 import javax.swing.JOptionPane;
 import hibernate.GestorHibernate;
 import models.InterfaceAbm;
+
 /**
  *
  * @author EMILIANO
  */
-public class GestorTratamiento extends GestorHibernate implements InterfaceAbm{
+public class GestorTratamiento extends GestorHibernate implements InterfaceAbm {
+
     private Tratamiento model;
 
-    public GestorTratamiento(Tratamiento model) {
-        this.model = model;
+    public GestorTratamiento() {
+        this.model = new Tratamiento();
+    }
+
+    public void crearTratamiento() {
+        this.model = new Tratamiento();
     }
 
     public Tratamiento getModel() {
@@ -26,13 +32,16 @@ public class GestorTratamiento extends GestorHibernate implements InterfaceAbm{
     public void setModel(Tratamiento model) {
         this.model = model;
     }
-    public void setNombre(String nombre){
+
+    public void setNombre(String nombre) {
         this.model.setNombre(nombre);
     }
-    public void setDetalle(String detalle){
+
+    public void setDetalle(String detalle) {
         this.model.setNombre(detalle);
     }
-   @Override
+
+    @Override
     public void guardar() {
         try {
             this.guardarObjeto(this.model);
@@ -73,6 +82,5 @@ public class GestorTratamiento extends GestorHibernate implements InterfaceAbm{
     public void imprimir() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-}
 
+}

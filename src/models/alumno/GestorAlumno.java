@@ -3,28 +3,32 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package models.alumno;
 
 import hibernate.GestorHibernate;
+import java.util.Date;
 import java.util.Set;
 import javax.swing.JOptionPane;
 import models.InterfaceAbm;
 import models.atencionMedica.Alergia;
+import models.atencionMedica.Tratamiento;
 import models.grupo.GrupoSanguineo;
 import models.identificacion.Documento;
 import models.institucion.InstitucionPorAlumno;
 import models.mutual.Mutual;
+import models.telefono.Telefono;
 import models.tutor.Tutor;
+import models.ubicacion.Direccion;
+
 /**
  *
  * @author EMILIANO
  */
-public class GestorAlumno extends GestorHibernate implements InterfaceAbm{
+public class GestorAlumno extends GestorHibernate implements InterfaceAbm {
+
     private Alumno model;
 
-    public GestorAlumno(Alumno model) {
-        this.model = model;
+    public GestorAlumno() {
     }
 
     public Alumno getModel() {
@@ -34,25 +38,71 @@ public class GestorAlumno extends GestorHibernate implements InterfaceAbm{
     public void setModel(Alumno model) {
         this.model = model;
     }
-    public void setDocumento(Documento documento){
-       this.model.setDocumento(documento);
+
+    public void crearModelo() {
+        this.model = new Alumno();
     }
-    public void setGrupoSangineo(GrupoSanguineo grupSang){
-        this.model.setGrupoSanguineo(grupSang);
+
+    public void setNombre(String nombre) {
+        this.model.setNombre(nombre);
     }
-    public void setTutor(Tutor tutor){
+
+    public void setApellido(String apellido) {
+        this.model.setApellido(apellido);
+    }
+
+    public void setEmail(String email) {
+        this.model.setEmail(email);
+    }
+
+    public void setFechaNac(Date fecha) {
+        this.model.setFechaNacimiento(fecha);
+    }
+
+    public void setDocumento(Documento documento) {
+        this.model.setDocumento(documento);
+    }
+
+    public void setTutor(Tutor tutor) {
         this.model.setTutor(tutor);
     }
-    public void setInstitucionPorAlumno(InstitucionPorAlumno insXAlumn){
+
+    public void setInstitucionPorAlumno(InstitucionPorAlumno insXAlumn) {
         this.model.setInstitucionPorAlumno(insXAlumn);
     }
-    public void setAlergia(Set<Alergia> alergias){
+
+    public void setAlergia(Set<Alergia> alergias) {
         this.model.setAlergias(alergias);
     }
-    public void setMutual(Set<Mutual> mutuales){
-        this.model.setMutuales(mutuales);
+
+    public void setMutual(Mutual mutual) {
+        this.model.setMutual(mutual);
     }
- @Override
+
+    public Set<Telefono> getTelefonos() {
+        return this.model.getTelefonos();
+    }
+
+    public void setTelefonos(Set<Telefono> tel) {
+        this.model.setTelefonos(tel);
+    }
+
+    public void setDireccion(Direccion dir) {
+        this.model.setDireccion(dir);
+    }
+
+    public void setGrupoSanguineo(GrupoSanguineo grupo) {
+        this.model.setGrupoSanguineo(grupo);
+    }
+    
+    public void setTratamientos(Set<Tratamiento> t){
+        this.model.setTratamientos(t);
+    }
+    public void setObservaciones(String o){
+        this.model.setObservaciones(o);
+    }
+
+    @Override
     public void guardar() {
         try {
             this.guardarObjeto(this.model);
@@ -93,7 +143,5 @@ public class GestorAlumno extends GestorHibernate implements InterfaceAbm{
     public void imprimir() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }
-
-

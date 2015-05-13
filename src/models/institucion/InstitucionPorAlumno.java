@@ -48,7 +48,9 @@ public class InstitucionPorAlumno {
         this.turno = turno;
     }
     
-    
+    public String toString(){
+        return this.institucionEductiva.getNombre() + "Turno: " + this.turno.getNombre();
+    }
     
     
     

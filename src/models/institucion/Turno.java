@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package models.institucion;
+
 import javax.persistence.*;
+
 /**
  *
  * @author EMILIANO
@@ -13,10 +14,11 @@ import javax.persistence.*;
 @Entity
 @Table(name = "turno")
 public class Turno {
+
     @Id
     @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
     private long id;
-    
+
     private String nombre;
     private String descripcion;
 
@@ -35,7 +37,10 @@ public class Turno {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-    
-    
-    
+
+    @Override
+    public String toString() {
+        return this.nombre;
+    }
+
 }
