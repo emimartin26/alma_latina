@@ -7,8 +7,11 @@ package controllers.alumno;
 
 import Utilidades.GestorCombo;
 import Utilidades.GestorLista;
+import Utilidades.Util;
+import com.toedter.calendar.JDateChooser;
 import controllers.Controller;
 import controllers.GestorConsultas;
+import java.awt.Color;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
@@ -16,8 +19,11 @@ import java.util.List;
 import java.util.Set;
 import javax.swing.DefaultListModel;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JDesktopPane;
+import javax.swing.JList;
 import javax.swing.ListModel;
+import javax.swing.text.JTextComponent;
 import models.alumno.GestorAlumno;
 import models.atencionMedica.Alergia;
 import models.atencionMedica.GestorAlergia;
@@ -105,34 +111,86 @@ public class ControllerAlumno extends Controller {
         this.getFrame().setVisible(true);
     }
 
-    public void getDatos() {
-        String nombre = this.getFormularioEspecifico().getTxtNombre().getText();
-        String apellido = this.getFormularioEspecifico().getTxtApellido().getText();
-        String email = this.getFormularioEspecifico().getTxtEmail().getText();
-        Date fechaNacimiento = (Date) this.getFormularioEspecifico().getDateFechaNacimiento().getDate();
-        String obsevarciones = this.getFormularioEspecifico().getTextObs().getText();
-        this.getGestorAlumno().crearModelo();
-        this.getGestorAlumno().setNombre(nombre);
-        this.getGestorAlumno().setApellido(apellido);
-        this.getGestorAlumno().setEmail(email);
-        this.getGestorAlumno().setFechaNac(fechaNacimiento);
-        this.getGestorAlumno().setDocumento(this.getDocumento());
-        this.getGestorAlumno().setTelefonos(this.getTelefonos());
-        this.getGestorAlumno().setDireccion(this.getDireccion());
-        this.getGestorAlumno().setGrupoSanguineo(this.getGrupoSanguineo());
-        this.getGestorAlumno().setMutual(this.getMutual());
-        this.getGestorAlumno().setInstitucionPorAlumno(this.getInstitucionPorAlumno());
-        this.getGestorAlumno().setAlergia(this.getAlergias());
-        this.getGestorAlumno().setTratamientos(this.getTratamientos());
-        this.getGestorAlumno().setObservaciones(obsevarciones);
-        this.getGestorAlumno().setTutor(this.getTutor());
-        if(0 == this.getFormularioEspecifico().getListCategoria().getModel().getSize()){
-             this.getGestorAlumno().guardar();
-        }else{
-            // Genererar inscripcion
+    public boolean isEmptyTxt(JTextComponent c) {
+        if (Util.estaVacioTxt(c)) {
+            c.setBackground(Color.PINK);
+            return false;
         }
-        
-       
+        c.setBackground(Color.GREEN);
+        return true;
+    }
+
+    public boolean validateDate(JDateChooser j) {
+        if (!(j.isValid())) {
+            new Util().getMensajeError("Verifique fecha de nacimiento");
+            return false;
+        }
+        return true;
+
+    }
+
+    public boolean isListItem(JList j, String msg) {
+        if (j.getModel().getSize() == 0) {
+            new Util().getMensajeError(msg);
+            return false;
+        }
+        return true;
+    }
+
+    public boolean isSelectCombo(JComboBox c) {
+        if (!(Util.estaSeleccionadoCombo(c))) {
+            c.setBackground(Color.PINK);
+            return false;
+        }
+        c.setBackground(Color.GREEN);
+        return true;
+    }
+
+    public boolean validarDatos() {
+        return (isEmptyTxt(this.getFormularioEspecifico().getTxtNombre())
+                & isEmptyTxt(this.getFormularioEspecifico().getTxtApellido())
+                & isEmptyTxt(this.getFormularioEspecifico().getTxtCalle())
+                & isEmptyTxt(this.getFormularioEspecifico().getTxtAlturaCalle())
+                & isEmptyTxt(this.getFormularioEspecifico().getTxtAlturaCalleTutor())
+                & isEmptyTxt(this.getFormularioEspecifico().getTxtCalleTutor())
+                & isEmptyTxt(this.getFormularioEspecifico().getTxtApellidoTutor())
+                & isEmptyTxt(this.getFormularioEspecifico().getTxtNombreTutor())
+                & isSelectCombo(this.getFormularioEspecifico().getCmbTipoDni())
+                & isSelectCombo(this.getFormularioEspecifico().getCmbLocalidad())
+                & isSelectCombo(this.getFormularioEspecifico().getCmbLocalidadTutor())
+                & isEmptyTxt(this.getFormularioEspecifico().getTxtDni())
+                & isListItem(this.getFormularioEspecifico().getLstNumerosTelefono(), "Ingrese al menos un numero de telefono")
+                & validateDate(this.getFormularioEspecifico().getDateFechaNacimiento()));
+    }
+
+    public void getDatos() {
+        if (validarDatos()) {
+            String nombre = this.getFormularioEspecifico().getTxtNombre().getText();
+            String apellido = this.getFormularioEspecifico().getTxtApellido().getText();
+            String email = this.getFormularioEspecifico().getTxtEmail().getText();
+            Date fechaNacimiento = (Date) this.getFormularioEspecifico().getDateFechaNacimiento().getDate();
+            String obsevarciones = this.getFormularioEspecifico().getTextObs().getText();
+            this.getGestorAlumno().crearModelo();
+            this.getGestorAlumno().setNombre(nombre);
+            this.getGestorAlumno().setApellido(apellido);
+            this.getGestorAlumno().setEmail(email);
+            this.getGestorAlumno().setFechaNac(fechaNacimiento);
+            this.getGestorAlumno().setDocumento(this.getDocumento());
+            this.getGestorAlumno().setTelefonos(this.getTelefonos());
+            this.getGestorAlumno().setDireccion(this.getDireccion());
+            this.getGestorAlumno().setGrupoSanguineo(this.getGrupoSanguineo());
+            this.getGestorAlumno().setMutual(this.getMutual());
+            this.getGestorAlumno().setInstitucionPorAlumno(this.getInstitucionPorAlumno());
+            this.getGestorAlumno().setAlergia(this.getAlergias());
+            this.getGestorAlumno().setTratamientos(this.getTratamientos());
+            this.getGestorAlumno().setObservaciones(obsevarciones);
+            this.getGestorAlumno().setTutor(this.getTutor());
+
+            this.getGestorAlumno().guardar();
+        } else {
+            System.out.println("No son validos");
+        }
+
     }
 
     public Mutual getMutual() {
@@ -243,18 +301,26 @@ public class ControllerAlumno extends Controller {
     }
 
     public void addAlergia() {
-        String alergia = this.getFormularioEspecifico().getTxtNombreAlergia().getText();
-        GestorAlergia g = new GestorAlergia();
-        g.setNombre(alergia);
-        this.addAlerListAlerg(g.getModel());
+        if (this.validAddAler()) {
+            String alergia = this.getFormularioEspecifico().getTxtNombreAlergia().getText();
+            GestorAlergia g = new GestorAlergia();
+            g.setNombre(alergia);
+            this.addAlerListAlerg(g.getModel());
+
+        }
 
     }
 
     public void removeAlergia() {
-        GestorLista gestorLista = new GestorLista();
-        DefaultListModel defaultListModel = gestorLista.getDefaultListModelBaseListModel(this.getFormularioEspecifico().getListAlergias().getModel());
-        defaultListModel.remove(this.getFormularioEspecifico().getListAlergias().getSelectedIndex());
-        gestorLista.llenarListBaseModel(defaultListModel, this.getFormularioEspecifico().getListAlergias());
+        if (!this.validRemoveAler()) {
+            GestorLista gestorLista = new GestorLista();
+            DefaultListModel defaultListModel = gestorLista.getDefaultListModelBaseListModel(this.getFormularioEspecifico().getListAlergias().getModel());
+            defaultListModel.remove(this.getFormularioEspecifico().getListAlergias().getSelectedIndex());
+            gestorLista.llenarListBaseModel(defaultListModel, this.getFormularioEspecifico().getListAlergias());
+        } else {
+            new Util().getMensajeError("No ha seleccionado nada");
+        }
+
     }
 
     public void addAlerListAlerg(Alergia a) {
@@ -265,18 +331,26 @@ public class ControllerAlumno extends Controller {
     }
 
     public void addTratamiento() {
-        String trat = this.getFormularioEspecifico().getTxtNombreTratamiento().getText();
-        GestorTratamiento g = new GestorTratamiento();
-        g.setNombre(trat);
-        this.addTratListTrat(g.getModel());
+        if (this.validAddTrat()) {
+            String trat = this.getFormularioEspecifico().getTxtNombreTratamiento().getText();
+            GestorTratamiento g = new GestorTratamiento();
+            g.setNombre(trat);
+            this.addTratListTrat(g.getModel());
+        }
 
     }
 
     public void removeTratamiento() {
-        GestorLista gestorLista = new GestorLista();
-        DefaultListModel defaultListModel = gestorLista.getDefaultListModelBaseListModel(this.getFormularioEspecifico().getListTratamientos().getModel());
-        defaultListModel.remove(this.getFormularioEspecifico().getListTratamientos().getSelectedIndex());
-        gestorLista.llenarListBaseModel(defaultListModel, this.getFormularioEspecifico().getListTratamientos());
+        if (!this.validRemoveTrat()) {
+            GestorLista gestorLista = new GestorLista();
+            DefaultListModel defaultListModel = gestorLista.getDefaultListModelBaseListModel(this.getFormularioEspecifico().getListTratamientos().getModel());
+            defaultListModel.remove(this.getFormularioEspecifico().getListTratamientos().getSelectedIndex());
+            gestorLista.llenarListBaseModel(defaultListModel, this.getFormularioEspecifico().getListTratamientos());
+        } else {
+            new Util().getMensajeError("No ha seleccionado nada");
+
+        }
+
     }
 
     public void addTratListTrat(Tratamiento t) {
@@ -286,12 +360,44 @@ public class ControllerAlumno extends Controller {
         gestorLista.llenarListBaseModel(defaultListModel, this.getFormularioEspecifico().getListTratamientos());
     }
 
+    public boolean validAddTel() {
+        return isEmptyTxt(this.getFormularioEspecifico().getTxtCaractTelefono()) & isEmptyTxt(this.getFormularioEspecifico().getTxtNumTelefono());
+    }
+
+    public boolean validAddTrat() {
+        return isEmptyTxt(this.getFormularioEspecifico().getTxtNombreTratamiento());
+    }
+
+    public boolean validAddAler() {
+        return isEmptyTxt(this.getFormularioEspecifico().getTxtNombreAlergia());
+    }
+
+    public boolean validRemoveTel() {
+        return this.getFormularioEspecifico().getLstNumerosTelefono().isSelectionEmpty();
+    }
+
+    public boolean validRemoveTrat() {
+        return this.getFormularioEspecifico().getListTratamientos().isSelectionEmpty();
+    }
+
+    public boolean validRemoveAler() {
+        return this.getFormularioEspecifico().getListAlergias().isSelectionEmpty();
+    }
+
     public void addTelefono() {
-        this.getControllerTelefono().addTelefono();
+        if (validAddTel()) {
+            this.getControllerTelefono().addTelefono();
+        }
+
     }
 
     public void removeTelefono() {
-        this.getControllerTelefono().removeTelefono();
+        if (!validRemoveTel()) {
+            this.getControllerTelefono().removeTelefono();
+        } else {
+            new Util().getMensajeError("No ha seleccionado nada");
+        }
+
     }
 
     public void addCategoria() {

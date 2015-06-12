@@ -12,7 +12,7 @@ import java.util.Locale;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
+import javax.swing.text.JTextComponent;
 
 /**
  *
@@ -20,12 +20,12 @@ import javax.swing.JTextField;
  */
 public class Util {
 
-    public static boolean estaVacioTxt(JTextField txt) {
+    public static boolean estaVacioTxt(JTextComponent txt) {
         return ("".equals(txt.getText().trim()));
     }
 
     public static boolean estaSeleccionadoCombo(JComboBox combo) {
-        return (combo.getSelectedItem() == null);
+        return (!(combo.getSelectedItem() == null));
     }
 
     public static void soloLetras(java.awt.event.KeyEvent evt) {

@@ -8,6 +8,7 @@ package views;
 import Utilidades.Util;
 import com.toedter.calendar.JDateChooser;
 import controllers.alumno.ControllerAlumno;
+import java.util.Date;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -26,6 +27,7 @@ public class FrmAlumno extends javax.swing.JInternalFrame {
     public FrmAlumno(ControllerAlumno controller) {
         initComponents();
         this.controller = controller;
+        this.initData();
     }
 
     public ControllerAlumno getController() {
@@ -145,9 +147,9 @@ public class FrmAlumno extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel45.setText("Nombres");
+        jLabel45.setText("Nombres *");
 
-        jLabel44.setText("Apellidos");
+        jLabel44.setText("Apellidos *");
 
         txtApellido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -160,11 +162,11 @@ public class FrmAlumno extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel2.setText("Fecha de Nacimiento");
+        jLabel2.setText("Fecha de Nacimiento *");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        jLabel51.setText("Tipo Documento");
+        jLabel51.setText("Tipo Documento *");
 
         jLabel46.setText("N°");
 
@@ -270,8 +272,13 @@ public class FrmAlumno extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel72.setText("N° Teléfono");
+        jLabel72.setText("N° Teléfono *");
 
+        txtCaractTelefono.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCaractTelefonoActionPerformed(evt);
+            }
+        });
         txtCaractTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCaractTelefonoKeyTyped(evt);
@@ -338,9 +345,9 @@ public class FrmAlumno extends javax.swing.JInternalFrame {
 
         jLabel53.setText("Piso");
 
-        jLabel54.setText("Altura");
+        jLabel54.setText("Altura *");
 
-        jLabel57.setText("Localidad");
+        jLabel57.setText("Localidad *");
 
         txtAlturaCalle.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -348,7 +355,7 @@ public class FrmAlumno extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel55.setText("Calle");
+        jLabel55.setText("Calle *");
 
         cmbLocalidad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -607,9 +614,9 @@ public class FrmAlumno extends javax.swing.JInternalFrame {
 
         jLabel59.setText("Piso");
 
-        jLabel60.setText("Altura");
+        jLabel60.setText("Altura *");
 
-        jLabel61.setText("Localidad");
+        jLabel61.setText("Localidad *");
 
         txtAlturaCalleTutor.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -617,7 +624,7 @@ public class FrmAlumno extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel62.setText("Calle");
+        jLabel62.setText("Calle *");
 
         checkAlumna.setText("Mismo Alumno");
         checkAlumna.addActionListener(new java.awt.event.ActionListener() {
@@ -679,9 +686,9 @@ public class FrmAlumno extends javax.swing.JInternalFrame {
 
         jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        jLabel16.setText("Nombre");
+        jLabel16.setText("Nombre *");
 
-        jLabel1.setText("Apellido");
+        jLabel1.setText("Apellido *");
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -746,6 +753,11 @@ public class FrmAlumno extends javax.swing.JInternalFrame {
 
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons/delete85.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -940,11 +952,11 @@ public class FrmAlumno extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtNumTelefonotxtNumTelActionPerformed
 
     private void txtNumTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumTelefonoKeyTyped
-
+        Util.soloEntero(evt);
     }//GEN-LAST:event_txtNumTelefonoKeyTyped
 
     private void txtCaractTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCaractTelefonoKeyTyped
-
+        Util.soloEntero(evt);
     }//GEN-LAST:event_txtCaractTelefonoKeyTyped
 
     private void btnNuevoTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoTelefonoActionPerformed
@@ -1006,6 +1018,14 @@ public class FrmAlumno extends javax.swing.JInternalFrame {
     private void txtApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtApellidoActionPerformed
+
+    private void txtCaractTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCaractTelefonoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCaractTelefonoActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1444,5 +1464,9 @@ public class FrmAlumno extends javax.swing.JInternalFrame {
 
     public void setTxtPisoDeptoTutor(JTextField txtPisoDeptoTutor) {
         this.txtPisoDeptoTutor = txtPisoDeptoTutor;
+    }
+
+    private void initData() {
+        this.getDateFechaNacimiento().setDate(new Date());
     }
 }
