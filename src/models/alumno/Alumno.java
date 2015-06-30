@@ -35,6 +35,9 @@ public class Alumno {
     private String apellido;
     private String email;
     private String observaciones;
+    private int estado;
+    public final static int NORMAL = 0;
+    public final static int ELIMINADO = 1;
 
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaNacimiento;
@@ -63,8 +66,9 @@ public class Alumno {
 
     public Alumno() {
         this.telefonos = new <Telefono> HashSet();
-
         this.alergias = new <Alergia> HashSet();
+        this.tratamientos = new <Tratamiento> HashSet();
+        this.estado = NORMAL;
     }
 
     public String getNombre() {
@@ -177,6 +181,14 @@ public class Alumno {
 
     public void setObservaciones(String observaciones) {
         this.observaciones = observaciones;
+    }
+
+    public int getEstado() {
+        return estado;
+    }
+
+    public void setEstado(int estado) {
+        this.estado = estado;
     }
 
     public String toString() {

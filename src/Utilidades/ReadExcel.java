@@ -78,6 +78,6 @@ public class ReadExcel {
     public static void main(String arg[]) {
         HibernateUtil.inicializar();
         ReadExcel excel = new ReadExcel();
-        excel.leerArchivoExcel("c:\\localidades1.xls");
+        excel.leerArchivoExcel("/home/emiliano/localidades1.xls");
     }
 }

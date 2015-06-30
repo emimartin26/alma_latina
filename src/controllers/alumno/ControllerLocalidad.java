@@ -30,8 +30,8 @@ public class ControllerLocalidad {
         GestorLocalidad g = new GestorLocalidad();
         List localidades = g.getLocalidadesXProv("Córdoba");
         GestorCombo ges = new GestorCombo();
-        ges.cargarCombo(localidades, cmbLocalidad);
-        ges.cargarCombo(localidades, cmbLocalidad2);
+        ges.cargarCombo(localidades, cmbLocalidad,true);
+        ges.cargarCombo(localidades, cmbLocalidad2,true);
 
     }
 

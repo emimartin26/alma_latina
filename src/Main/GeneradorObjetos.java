@@ -104,6 +104,11 @@ public class GeneradorObjetos {
     }
 
     public void cargarMutuales() {
+        Mutual mn = new Mutual();
+        mn.setNombre("No Mutual");
+        mn.setDescripcion("Descripcion 1");
+        this.getGestor().guardarObjeto(mn);
+
         Mutual m = new Mutual();
         m.setNombre("Osde");
         m.setDescripcion("Descripcion 1");
@@ -121,6 +126,17 @@ public class GeneradorObjetos {
     public void cargarColegios() {
         GestorConsultas gestor = new GestorConsultas(Localidad.class, "localidad");
         Localidad loc = (Localidad) gestor.resultConsulta().get(0);
+
+        InstitucionEducativa in = new InstitucionEducativa();
+        in.setNombre("No Colegio");
+        Direccion dx = new Direccion();
+        dx.setLocalidad(loc);
+        dx.setCalle("xxx");
+        dx.setAltura(550);
+        dx.setNumDepto(10);
+        in.setDireccion(dx);
+        this.getGestor().guardarObjeto(in);
+
         InstitucionEducativa i = new InstitucionEducativa();
         i.setNombre("Rivadabia");
         Direccion d = new Direccion();
@@ -128,7 +144,6 @@ public class GeneradorObjetos {
         d.setCalle("Mendoza");
         d.setAltura(550);
         d.setNumDepto(10);
-
         i.setDireccion(d);
         this.getGestor().guardarObjeto(i);
 
@@ -162,6 +177,7 @@ public class GeneradorObjetos {
         Categoria c2 = new Categoria();
         c2.setNombre("Salsa");
         this.getGestor().guardarObjeto(c2);
+        System.out.println("Categorias is ready...");
 
     }
 }

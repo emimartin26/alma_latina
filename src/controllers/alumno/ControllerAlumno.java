@@ -12,16 +12,15 @@ import com.toedter.calendar.JDateChooser;
 import controllers.Controller;
 import controllers.GestorConsultas;
 import java.awt.Color;
-import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import javax.swing.DefaultListModel;
 import javax.swing.JComboBox;
-import javax.swing.JComponent;
 import javax.swing.JDesktopPane;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.ListModel;
 import javax.swing.text.JTextComponent;
 import models.alumno.GestorAlumno;
@@ -34,7 +33,6 @@ import models.identificacion.Documento;
 import models.identificacion.GestorTipoDocumento;
 import models.identificacion.TipoDocumento;
 import models.inscripcion.Categoria;
-import models.inscripcion.GestorInscripcion;
 import models.institucion.InstitucionEducativa;
 import models.institucion.InstitucionPorAlumno;
 import models.institucion.Turno;
@@ -56,7 +54,9 @@ public class ControllerAlumno extends Controller {
     private ControllerTelefono controllerTelefono;
     private ControllerLocalidad controllerLocalidad;
 
-    public ControllerAlumno() {
+    public ControllerAlumno(JDesktopPane escritorio) {
+        this.setEscritorio(escritorio);
+        this.setFrame(new FrmAlumno(this));
         this.gestorAlumno = new GestorAlumno();
     }
 
@@ -95,11 +95,6 @@ public class ControllerAlumno extends Controller {
 
     }
 
-    public ControllerAlumno(JDesktopPane escritorio) {
-        this.setEscritorio(escritorio);
-        this.setFrame(new FrmAlumno(this));
-    }
-
     public void cargar() {
         this.abrir();
         this.crearControllerAlumno();
@@ -121,7 +116,7 @@ public class ControllerAlumno extends Controller {
     }
 
     public boolean validateDate(JDateChooser j) {
-        if (!(j.isValid())) {
+        if (null == j.getDate()) {
             new Util().getMensajeError("Verifique fecha de nacimiento");
             return false;
         }
@@ -147,8 +142,8 @@ public class ControllerAlumno extends Controller {
     }
 
     public boolean validarDatos() {
-        return (isEmptyTxt(this.getFormularioEspecifico().getTxtNombre())
-                & isEmptyTxt(this.getFormularioEspecifico().getTxtApellido())
+        return (isEmptyTxt(this.getFormularioEspecifico().getTxtApellido())
+                & isEmptyTxt(this.getFormularioEspecifico().getTxtNombre())
                 & isEmptyTxt(this.getFormularioEspecifico().getTxtCalle())
                 & isEmptyTxt(this.getFormularioEspecifico().getTxtAlturaCalle())
                 & isEmptyTxt(this.getFormularioEspecifico().getTxtAlturaCalleTutor())
@@ -187,6 +182,12 @@ public class ControllerAlumno extends Controller {
             this.getGestorAlumno().setTutor(this.getTutor());
 
             this.getGestorAlumno().guardar();
+            this.getFormularioEspecifico().setVisible(false);
+            int opcion = new Util().confirmacion("¿Desea crear un nuevo alumno?");
+            if (opcion == JOptionPane.YES_OPTION) {
+                ControllerAlumno controller = new ControllerAlumno(this.getEscritorio());
+                controller.cargar();
+            }
         } else {
             System.out.println("No son validos");
         }
@@ -194,6 +195,7 @@ public class ControllerAlumno extends Controller {
     }
 
     public Mutual getMutual() {
+
         return (Mutual) this.getFormularioEspecifico().getCmbMutual().getSelectedItem();
     }
 
@@ -234,8 +236,18 @@ public class ControllerAlumno extends Controller {
         dir.setLocalidad(loc);
         dir.setCalle(this.getFormularioEspecifico().getTxtCalle().getText());
         dir.setAltura(Integer.parseInt(this.getFormularioEspecifico().getTxtAlturaCalle().getText()));
-        dir.setPiso(Integer.parseInt(this.getFormularioEspecifico().getTxtPisoDepto().getText()));
-        dir.setNumDepto(Integer.parseInt(this.getFormularioEspecifico().getTxtNumDepto().getText()));
+        if (Util.estaVacioTxt(this.getFormularioEspecifico().getTxtPisoDepto())) {
+            dir.setPiso(0);
+
+        } else {
+            dir.setPiso(Integer.parseInt(this.getFormularioEspecifico().getTxtPisoDepto().getText()));
+        }
+        if (Util.estaVacioTxt(this.getFormularioEspecifico().getTxtNumDepto())) {
+            dir.setNumDepto(0);
+        } else {
+            dir.setNumDepto(Integer.parseInt(this.getFormularioEspecifico().getTxtNumDepto().getText()));
+
+        }
         return dir;
     }
 
@@ -245,15 +257,25 @@ public class ControllerAlumno extends Controller {
         dir.setLocalidad(loc);
         dir.setCalle(this.getFormularioEspecifico().getTxtCalleTutor().getText());
         dir.setAltura(Integer.parseInt(this.getFormularioEspecifico().getTxtAlturaCalleTutor().getText()));
-        dir.setPiso(Integer.parseInt(this.getFormularioEspecifico().getTxtPisoDeptoTutor().getText()));
-        dir.setNumDepto(Integer.parseInt(this.getFormularioEspecifico().getTxtNumDeptoTutor().getText()));
+        if (Util.estaVacioTxt(this.getFormularioEspecifico().getTxtPisoDepto())) {
+            dir.setPiso(0);
+
+        } else {
+            dir.setPiso(Integer.parseInt(this.getFormularioEspecifico().getTxtPisoDepto().getText()));
+        }
+        if (Util.estaVacioTxt(this.getFormularioEspecifico().getTxtNumDepto())) {
+            dir.setNumDepto(0);
+        } else {
+            dir.setNumDepto(Integer.parseInt(this.getFormularioEspecifico().getTxtNumDepto().getText()));
+
+        }
         return dir;
     }
 
     public Tutor getTutor() {
         GestorTutor t = new GestorTutor();
         t.setNombre(this.getFormularioEspecifico().getTxtNombreTutor().getText());
-        t.setNombre(this.getFormularioEspecifico().getTxtApellidoTutor().getText());
+        t.setApellido(this.getFormularioEspecifico().getTxtApellidoTutor().getText());
         t.setDireccion(this.getDireccionTutor());
         return t.getModel();
     }
@@ -430,7 +452,7 @@ public class ControllerAlumno extends Controller {
         GestorTipoDocumento g = new GestorTipoDocumento();
         List tipos = g.getTiposDoc();
         GestorCombo ges = new GestorCombo();
-        ges.cargarCombo(tipos, cmbTiposDoc);
+        ges.cargarCombo(tipos, cmbTiposDoc, true);
 
     }
 
@@ -438,31 +460,31 @@ public class ControllerAlumno extends Controller {
         GestorConsultas g = new GestorConsultas(GrupoSanguineo.class, "grupo");
         JComboBox cbmGruposSang = this.getFormularioEspecifico().getCmbGrupoSan();
         GestorCombo ges = new GestorCombo();
-        ges.cargarCombo(g.resultConsulta(), cbmGruposSang);
+        ges.cargarCombo(g.resultConsulta(), cbmGruposSang, true);
     }
 
     public void cargarMutuales() {
         GestorConsultas g = new GestorConsultas(Mutual.class, "mutual");
         GestorCombo ges = new GestorCombo();
-        ges.cargarCombo(g.resultConsulta(), this.getFormularioEspecifico().getCmbMutual());
+        ges.cargarCombo(g.resultConsulta(), this.getFormularioEspecifico().getCmbMutual(), false);
     }
 
     public void cargarInstituciones() {
         GestorConsultas g = new GestorConsultas(InstitucionEducativa.class, "institucion");
         GestorCombo ges = new GestorCombo();
-        ges.cargarCombo(g.resultConsulta(), this.getFormularioEspecifico().getCmbColegio());
+        ges.cargarCombo(g.resultConsulta(), this.getFormularioEspecifico().getCmbColegio(), false);
     }
 
     public void cargarTurnos() {
         GestorConsultas g = new GestorConsultas(Turno.class, "turno");
         GestorCombo ges = new GestorCombo();
-        ges.cargarCombo(g.resultConsulta(), this.getFormularioEspecifico().getCmbTurno());
+        ges.cargarCombo(g.resultConsulta(), this.getFormularioEspecifico().getCmbTurno(), false);
     }
 
     public void cargarCategorias() {
         GestorConsultas g = new GestorConsultas(Categoria.class, "categoria");
         GestorCombo ges = new GestorCombo();
-        ges.cargarCombo(g.resultConsulta(), this.getFormularioEspecifico().getCmbCategoria());
+        ges.cargarCombo(g.resultConsulta(), this.getFormularioEspecifico().getCmbCategoria(), true);
     }
 
     public void inicializarDatos() {

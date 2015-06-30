@@ -102,6 +102,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         menuItemListAlum.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons/chart46.png"))); // NOI18N
         menuItemListAlum.setText("Listar Alumnos");
+        menuItemListAlum.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemListAlumActionPerformed(evt);
+            }
+        });
         jMenu1.add(menuItemListAlum);
 
         jMenuBar1.add(jMenu1);
@@ -158,6 +163,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private void menuItemReinscripcionActionPerformedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemReinscripcionActionPerformedActionPerformed
         this.getController().abrirFrmInscripcion();
     }//GEN-LAST:event_menuItemReinscripcionActionPerformedActionPerformed
+
+    private void menuItemListAlumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemListAlumActionPerformed
+        this.getController().abrirFrmListAlumno();
+    }//GEN-LAST:event_menuItemListAlumActionPerformed
     private void configSkin() {
         JFrame.setDefaultLookAndFeelDecorated(true);
         SubstanceLookAndFeel.setSkin("org.jvnet.substance.skin.OfficeSilver2007Skin");

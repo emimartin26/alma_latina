@@ -13,10 +13,12 @@ import javax.swing.JComboBox;
  */
 public class GestorCombo {
 
-    public void cargarCombo(List lista, JComboBox combo) {
+    public void cargarCombo(List lista, JComboBox combo,boolean isFirstElementNull) {
         List <Object> listaAux = lista;
         combo.removeAllItems();
-        combo.addItem(null);
+        if(isFirstElementNull)
+            combo.addItem(null);
+        
         for (Object objeto : listaAux) {
             combo.addItem(objeto);
         }

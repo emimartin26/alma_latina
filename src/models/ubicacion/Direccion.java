@@ -27,6 +27,11 @@ public class Direccion {
     @OneToOne(targetEntity = Localidad.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Localidad localidad;
 
+    public Direccion() {
+        this.numDepto = 0;
+        this.piso = 0;
+    }
+
     public int getAltura() {
         return altura;
     }

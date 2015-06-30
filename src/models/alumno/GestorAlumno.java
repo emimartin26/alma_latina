@@ -5,8 +5,11 @@
  */
 package models.alumno;
 
+import Utilidades.Util;
+import controllers.GestorConsultas;
 import hibernate.GestorHibernate;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 import javax.swing.JOptionPane;
 import models.InterfaceAbm;
@@ -94,11 +97,12 @@ public class GestorAlumno extends GestorHibernate implements InterfaceAbm {
     public void setGrupoSanguineo(GrupoSanguineo grupo) {
         this.model.setGrupoSanguineo(grupo);
     }
-    
-    public void setTratamientos(Set<Tratamiento> t){
+
+    public void setTratamientos(Set<Tratamiento> t) {
         this.model.setTratamientos(t);
     }
-    public void setObservaciones(String o){
+
+    public void setObservaciones(String o) {
         this.model.setObservaciones(o);
     }
 
@@ -107,8 +111,10 @@ public class GestorAlumno extends GestorHibernate implements InterfaceAbm {
         try {
             this.guardarObjeto(this.model);
             System.out.println(this.model + " - Guardado con exito");
+            new Util().getMensajeInformation("Alumno Guardado con exito");
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al guardar objeto: " + e);
+            new Util().getMensajeError("Comunicarse con el administrador de sistemas");
+            //JOptionPane.showMessageDialog(null, "Error al guardar objeto: " + e);
         }
     }
 
@@ -126,18 +132,37 @@ public class GestorAlumno extends GestorHibernate implements InterfaceAbm {
     @Override
     public void eliminar() {
         try {
-            this.eliminarObjeto(this.model);
-            System.out.println(this.model + " - Eliminado con exito");
+            Alumno a = this.model;
+            a.setEstado(Alumno.ELIMINADO);
+            this.actualizarObjeto(a);
+            new Util().getMensajeInformation("Alumno Eliminado con exito");
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al eliminar objeto: " + e);
+            new Util().getMensajeError("Comunicarse con el administrador de sistemas");
         }
     }
 
     @Override
     public void listar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
     }
+
+    //Primero paso como parametro el apellido del tutor
+    //Segundo parametro apellido alumno
+    //numero documento
+    public List listar_por_filtro(String campo1, String campo2, String campo3) {
+        GestorConsultas gestor = new GestorConsultas(Alumno.class, "alumno");
+        gestor.addFiltroInt("estado", Alumno.NORMAL);
+        gestor.createAlias("alumno.tutor", "tutor");
+        gestor.addFiltro("tutor.apellido", campo1);
+
+        gestor.addFiltro("apellido", campo2);
+
+        gestor.createAlias("alumno.documento", "documento");
+        gestor.addFiltro("documento.numero", campo3);
+        return gestor.resultConsulta();
+    }
+
 
     @Override
     public void imprimir() {

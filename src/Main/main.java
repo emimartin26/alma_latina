@@ -31,10 +31,6 @@ public class main {
     public static void main(String[] args) {
         HibernateUtil.inicializar();
         GestorConsultas g = new GestorConsultas(Alumno.class, "alumno");
-//        for (int i = 0; i < g.resultConsulta().size(); i++) {
-//            System.out.println(g.resultConsulta().get(i));
-//            System.out.println("\t");
-//        }
         ControllerPrincipal contr = new ControllerPrincipal();
         contr.abrir();
         //config();

@@ -27,7 +27,7 @@ public class FrmAlumno extends javax.swing.JInternalFrame {
     public FrmAlumno(ControllerAlumno controller) {
         initComponents();
         this.controller = controller;
-        this.initData();
+        //this.initData();
     }
 
     public ControllerAlumno getController() {
@@ -211,26 +211,24 @@ public class FrmAlumno extends javax.swing.JInternalFrame {
             .addGroup(pnlDatosPersonalesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDatosPersonalesLayout.createSequentialGroup()
+                        .addGroup(pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel45)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel44))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtNombre)
+                            .addComponent(txtEmail)
+                            .addComponent(txtApellido)))
                     .addGroup(pnlDatosPersonalesLayout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDatosPersonalesLayout.createSequentialGroup()
-                        .addGroup(pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(pnlDatosPersonalesLayout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(18, 18, 18)
-                                .addComponent(dateFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                            .addGroup(pnlDatosPersonalesLayout.createSequentialGroup()
-                                .addGroup(pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel45)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel44))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtApellido)
-                                    .addComponent(txtNombre)
-                                    .addComponent(txtEmail))))
-                        .addGap(115, 115, 115))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(pnlDatosPersonalesLayout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(dateFechaNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         pnlDatosPersonalesLayout.setVerticalGroup(
             pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -343,7 +341,19 @@ public class FrmAlumno extends javax.swing.JInternalFrame {
 
         jLabel52.setText("N° Depto");
 
+        txtNumDepto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNumDeptoKeyTyped(evt);
+            }
+        });
+
         jLabel53.setText("Piso");
+
+        txtPisoDepto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPisoDeptoKeyTyped(evt);
+            }
+        });
 
         jLabel54.setText("Altura *");
 
@@ -612,7 +622,19 @@ public class FrmAlumno extends javax.swing.JInternalFrame {
 
         jLabel58.setText("N° Depto");
 
+        txtNumDeptoTutor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNumDeptoTutorKeyTyped(evt);
+            }
+        });
+
         jLabel59.setText("Piso");
+
+        txtPisoDeptoTutor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPisoDeptoTutorKeyTyped(evt);
+            }
+        });
 
         jLabel60.setText("Altura *");
 
@@ -968,7 +990,7 @@ public class FrmAlumno extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnEliminarTelefonoActionPerformed
 
     private void txtAlturaCalleKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAlturaCalleKeyTyped
-
+        Util.soloEntero(evt);
     }//GEN-LAST:event_txtAlturaCalleKeyTyped
 
     private void cmbLocalidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbLocalidadActionPerformed
@@ -992,7 +1014,7 @@ public class FrmAlumno extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnNuevoTratamientoActionPerformed
 
     private void txtAlturaCalleTutorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAlturaCalleTutorKeyTyped
-        // TODO add your handling code here:
+        Util.soloEntero(evt);
     }//GEN-LAST:event_txtAlturaCalleTutorKeyTyped
 
     private void btnEliminarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarCategoriaActionPerformed
@@ -1026,6 +1048,22 @@ public class FrmAlumno extends javax.swing.JInternalFrame {
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         this.setVisible(false);
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void txtPisoDeptoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPisoDeptoKeyTyped
+        Util.soloEntero(evt);
+    }//GEN-LAST:event_txtPisoDeptoKeyTyped
+
+    private void txtNumDeptoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumDeptoKeyTyped
+        Util.soloEntero(evt);
+    }//GEN-LAST:event_txtNumDeptoKeyTyped
+
+    private void txtPisoDeptoTutorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPisoDeptoTutorKeyTyped
+        Util.soloEntero(evt);
+    }//GEN-LAST:event_txtPisoDeptoTutorKeyTyped
+
+    private void txtNumDeptoTutorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumDeptoTutorKeyTyped
+        Util.soloEntero(evt);
+    }//GEN-LAST:event_txtNumDeptoTutorKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

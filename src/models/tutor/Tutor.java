@@ -57,5 +57,10 @@ public class Tutor {
     public void setDireccion(Direccion direccion) {
         this.direccion = direccion;
     }
+    
+    @Override
+    public String toString(){
+        return this.apellido + ", " + this.nombre; 
+    }
 
 }
