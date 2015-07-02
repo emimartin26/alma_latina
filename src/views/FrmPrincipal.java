@@ -11,6 +11,8 @@ import gui.*;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.net.URL;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import org.jvnet.substance.SubstanceLookAndFeel;
 
@@ -31,8 +33,16 @@ public class FrmPrincipal extends javax.swing.JFrame {
         initComponents();
         // En esta linea iniciamos el formulario maximizado
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.setIcon();
         this.controller = controller;
         this.configFondo();
+    }
+
+    private void setIcon() {
+        URL iconURL = getClass().getResource("/Images/icons/estadoAlumno.png");
+// iconURL is null when not found
+        ImageIcon icon = new ImageIcon(iconURL);
+        this.setIconImage(icon.getImage());
     }
 
     public EscritorioFondo getEscritorio() {
@@ -70,8 +80,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         menuItemNewAlumno = new javax.swing.JMenuItem();
-        menuItemModAlumno = new javax.swing.JMenuItem();
-        menuItemDelAl = new javax.swing.JMenuItem();
         menuItemListAlum = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         registrarCuota = new javax.swing.JMenuItem();
@@ -91,14 +99,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
             }
         });
         jMenu1.add(menuItemNewAlumno);
-
-        menuItemModAlumno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons/update22.png"))); // NOI18N
-        menuItemModAlumno.setText("Modificar Alumno");
-        jMenu1.add(menuItemModAlumno);
-
-        menuItemDelAl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons/delete85.png"))); // NOI18N
-        menuItemDelAl.setText("Eliminar Alumno");
-        jMenu1.add(menuItemDelAl);
 
         menuItemListAlum.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons/chart46.png"))); // NOI18N
         menuItemListAlum.setText("Listar Alumnos");
@@ -178,9 +178,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem menuItemDelAl;
     private javax.swing.JMenuItem menuItemListAlum;
-    private javax.swing.JMenuItem menuItemModAlumno;
     private javax.swing.JMenuItem menuItemNewAlumno;
     private javax.swing.JMenuItem menuItemReinscripcionActionPerformed;
     private javax.swing.JMenuItem registrarCuota;

@@ -14,6 +14,7 @@ import controllers.GestorConsultas;
 import java.awt.Color;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import javax.swing.DefaultListModel;
@@ -41,6 +42,7 @@ import models.telefono.Telefono;
 import models.tutor.GestorTutor;
 import models.tutor.Tutor;
 import models.ubicacion.Direccion;
+import models.ubicacion.GestorLocalidad;
 import models.ubicacion.Localidad;
 import views.FrmAlumno;
 
@@ -99,6 +101,84 @@ public class ControllerAlumno extends Controller {
         this.abrir();
         this.crearControllerAlumno();
         this.inicializarDatos();
+    }
+
+    public void cargarFromListAlumno() {
+        this.abrir();
+        this.cargarTiposDocumentos();
+        this.controllerTelefono = new ControllerTelefono(this.getFormularioEspecifico());
+        this.controllerLocalidad = new ControllerLocalidad(this.getFormularioEspecifico());
+        this.inicializarDatos();
+        this.initDataMod();
+    }
+
+    public void llenarList(Set set, JList listInterfaz) {
+        DefaultListModel model = new DefaultListModel();
+        Iterator it = set.iterator();
+        while (it.hasNext()) {
+            model.addElement(it.next());
+        }
+
+        listInterfaz.setModel(model);
+
+    }
+
+    public void initDataMod() {
+        GestorLista gestorLista = new GestorLista();
+        ///
+        this.getFormularioEspecifico().getTxtNombre().setText(this.getGestorAlumno().getModel().getNombre());
+        this.getFormularioEspecifico().getTxtApellido().setText(this.getGestorAlumno().getModel().getApellido());
+        this.getFormularioEspecifico().getTxtEmail().setText(this.getGestorAlumno().getModel().getEmail());
+        this.getFormularioEspecifico().getDateFechaNacimiento().setDate(this.getGestorAlumno().getModel().getFechaNacimiento());
+        this.getFormularioEspecifico().getTxtDni().setText(this.getGestorAlumno().getModel().getDocumento().getNumero());
+        this.getFormularioEspecifico().getCmbTipoDni().setSelectedItem(this.getGestorAlumno().getModel().getDocumento().getTipo());
+        this.llenarList(this.getGestorAlumno().getTelefonos(), this.getFormularioEspecifico().getLstNumerosTelefono());
+        this.getFormularioEspecifico().getCmbLocalidad().setSelectedItem(this.getGestorAlumno().getModel().getDireccion().getLocalidad());
+        this.getFormularioEspecifico().getTxtCalle().setText(this.getGestorAlumno().getModel().getDireccion().getCalle());
+        this.getFormularioEspecifico().getTxtAlturaCalle().setText(String.valueOf(this.getGestorAlumno().getModel().getDireccion().getAltura()));
+        this.getFormularioEspecifico().getTxtPisoDepto().setText(String.valueOf(this.getGestorAlumno().getModel().getDireccion().getPiso()));
+        this.getFormularioEspecifico().getTxtNumDepto().setText(String.valueOf(this.getGestorAlumno().getModel().getDireccion().getNumDepto()));
+        this.getFormularioEspecifico().getCmbGrupoSan().setSelectedItem(this.getGestorAlumno().getModel().getGrupoSanguineo());
+        this.getFormularioEspecifico().getCmbMutual().setSelectedItem(this.getGestorAlumno().getModel().getMutual());
+        this.getFormularioEspecifico().getCmbColegio().setSelectedItem(this.getGestorAlumno().getModel().getInstitucionPorAlumno().getInstitucionEductiva());
+        this.getFormularioEspecifico().getCmbTurno().setSelectedItem(this.getGestorAlumno().getModel().getInstitucionPorAlumno().getTurno());
+        this.llenarList(this.getGestorAlumno().getModel().getTratamientos(), this.getFormularioEspecifico().getListTratamientos());
+        this.llenarList(this.getGestorAlumno().getModel().getAlergias(), this.getFormularioEspecifico().getListAlergias());
+        this.getFormularioEspecifico().getTextObs().setText(this.getGestorAlumno().getModel().getObservaciones());
+
+        this.getFormularioEspecifico().getCmbLocalidadTutor().setSelectedItem(this.getGestorAlumno().getModel().getTutor().getDireccion().getLocalidad());
+        this.getFormularioEspecifico().getTxtCalleTutor().setText(this.getGestorAlumno().getModel().getTutor().getDireccion().getCalle());
+        this.getFormularioEspecifico().getTxtNumDeptoTutor().setText(String.valueOf(this.getGestorAlumno().getModel().getTutor().getDireccion().getNumDepto()));
+        this.getFormularioEspecifico().getTxtAlturaCalleTutor().setText(String.valueOf(this.getGestorAlumno().getModel().getDireccion().getNumDepto()));
+        this.getFormularioEspecifico().getTxtPisoDeptoTutor().setText(String.valueOf(this.getGestorAlumno().getModel().getTutor().getDireccion().getPiso()));
+
+        this.getFormularioEspecifico().getTxtNombreTutor().setText(this.getGestorAlumno().getModel().getTutor().getNombre());
+        this.getFormularioEspecifico().getTxtApellidoTutor().setText(this.getGestorAlumno().getModel().getTutor().getApellido());
+        if (this.getGestorAlumno().getModel().getTutor().getDireccion().getLocalidad().equals(this.getGestorAlumno().getModel().getDireccion().getLocalidad())
+                & this.getGestorAlumno().getModel().getTutor().getDireccion().getCalle().equals(this.getGestorAlumno().getModel().getDireccion().getCalle())
+                & String.valueOf(this.getGestorAlumno().getModel().getTutor().getDireccion().getAltura()).equals(String.valueOf(this.getGestorAlumno().getModel().getDireccion().getAltura()))
+                & String.valueOf(this.getGestorAlumno().getModel().getDireccion().getNumDepto()).equals(String.valueOf(this.getGestorAlumno().getModel().getDireccion().getNumDepto()))
+                & String.valueOf(this.getGestorAlumno().getModel().getTutor().getDireccion().getPiso()).equals(String.valueOf(this.getGestorAlumno().getModel().getDireccion().getPiso()))) {
+            this.getFormularioEspecifico().getCheckAlumna().setSelected(true);
+            this.blockFieldTutor(false);
+        }
+
+//        this.getFormularioEspecifico().
+//        
+//        this.getGestorAlumno().setNombre(nombre);
+//        this.getGestorAlumno().setApellido(apellido);
+//        this.getGestorAlumno().setEmail(email);
+//        this.getGestorAlumno().setFechaNac(fechaNacimiento);
+//        this.getGestorAlumno().setDocumento(this.getDocumento());
+//        this.getGestorAlumno().setTelefonos(this.getTelefonos());
+//        this.getGestorAlumno().setDireccion(this.getDireccion());
+//        this.getGestorAlumno().setGrupoSanguineo(this.getGrupoSanguineo());
+//        this.getGestorAlumno().setMutual(this.getMutual());
+//        this.getGestorAlumno().setInstitucionPorAlumno(this.getInstitucionPorAlumno());
+//        this.getGestorAlumno().setAlergia(this.getAlergias());
+//        this.getGestorAlumno().setTratamientos(this.getTratamientos());
+//        this.getGestorAlumno().setObservaciones(obsevarciones);
+//        this.getGestorAlumno().setTutor(this.getTutor());
     }
 
     public void abrir() {
@@ -444,6 +524,7 @@ public class ControllerAlumno extends Controller {
     }
 
     public void cargarLocalidades() {
+
         this.getControllerLocalidad().cargarLocalidades();
     }
 

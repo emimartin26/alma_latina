@@ -7,6 +7,8 @@ package views;
 
 import Utilidades.Util;
 import controllers.alumno.ControllerListAlumno;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -24,9 +26,19 @@ public class FrmListAlumno extends javax.swing.JInternalFrame {
 
     public FrmListAlumno(ControllerListAlumno controller) {
         initComponents();
+        this.centrarVentana();
         this.hideColumn();
         this.controller = controller;
         //this.initData();
+    }
+   private void centrarVentana() {
+        //este metodo devuelve el tamaño de la pantalla  
+        Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
+        //obtenemos el tamaño de la ventana  
+        Dimension ventana = this.getSize();
+        //para centrar la ventana lo hacemos con el siguiente calculo  
+        this.setLocation((pantalla.width - ventana.width) / 2, (pantalla.height - ventana.height) / 2);
+        //y para finalizar la hacemos visible  
     }
 
     public void hideColumn() {
@@ -119,6 +131,7 @@ public class FrmListAlumno extends javax.swing.JInternalFrame {
         jSeparator1 = new javax.swing.JSeparator();
 
         setTitle("Buscar Alumnos");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons/magnifier52.png"))); // NOI18N
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Buscar"));
 
@@ -351,6 +364,7 @@ public class FrmListAlumno extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        this.controller.modificar();
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnCancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelar1ActionPerformed

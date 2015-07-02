@@ -102,10 +102,24 @@ public class ControllerListAlumno extends Controller {
                 getGestor().eliminar();
                 this.mostrar();
             }
-        }else{
+        } else {
             new Util().getMensajeError("No ha seleccionado ningún Alumno...");
         }
 
     }
 
+    public void modificar() {
+        if (this.getFormularioEspecifico().getTblAlumnos().getSelectedRow() >= 0) {
+            int fila = this.getFormularioEspecifico().getTblAlumnos().getSelectedRow();
+            Alumno a = (Alumno) this.getFormularioEspecifico().getTblAlumnos().getValueAt(fila, 0);
+            ControllerAlumno controller = new ControllerAlumno(this.getEscritorio());
+            GestorAlumno gestor = new GestorAlumno();
+            gestor.setModel(a);
+            controller.setGestorAlumno(gestor);
+            controller.cargarFromListAlumno();
+        } else {
+            new Util().getMensajeError("No ha seleccionado ningún Alumno...");
+        }
+
+    }
 }

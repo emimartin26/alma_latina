@@ -54,20 +54,20 @@ public class Util {
     }
 
     public void getMensajeError(String mensaje) {
-        JOptionPane.showMessageDialog(null, mensaje, "Error", JOptionPane.ERROR_MESSAGE, new ImageIcon(new ImageIcon(getClass().getResource("/Imagenes/m_error.png")).getImage()));
+        JOptionPane.showMessageDialog(null, mensaje, "Error", JOptionPane.ERROR_MESSAGE, new ImageIcon(new ImageIcon(getClass().getResource("/Images/m_error.png")).getImage()));
 
     }
 
     public void getMensajeWarning(String mensaje) {
-        JOptionPane.showMessageDialog(null, mensaje, "Advertencia", JOptionPane.WARNING_MESSAGE, new ImageIcon(new ImageIcon(getClass().getResource("/Imagenes/m_atencion.png")).getImage()));
+        JOptionPane.showMessageDialog(null, mensaje, "Advertencia", JOptionPane.WARNING_MESSAGE, new ImageIcon(new ImageIcon(getClass().getResource("/Images/m_atencion.png")).getImage()));
     }
 
     public void getMensajeInformation(String mensaje) {
-        JOptionPane.showMessageDialog(null, mensaje, "Información", JOptionPane.INFORMATION_MESSAGE, new ImageIcon(new ImageIcon(getClass().getResource("/Imagenes/m_bien.png")).getImage()));
+        JOptionPane.showMessageDialog(null, mensaje, "Información", JOptionPane.INFORMATION_MESSAGE, new ImageIcon(new ImageIcon(getClass().getResource("/Images/m_bien.png")).getImage()));
     }
 
     public int confirmacion(String mensaje) {
-        int opcion = JOptionPane.showConfirmDialog(null, mensaje, "Confirmación", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, new ImageIcon(new ImageIcon(getClass().getResource("/Imagenes/m_pregunta.png")).getImage()));
+        int opcion = JOptionPane.showConfirmDialog(null, mensaje, "Confirmación", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, new ImageIcon(new ImageIcon(getClass().getResource("/Images/m_pregunta.png")).getImage()));
         return opcion;
 
     }

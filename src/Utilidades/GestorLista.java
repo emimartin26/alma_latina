@@ -49,6 +49,7 @@ public class GestorLista {
         listInterfaz.setModel(model);
 
     }
+ 
 
     public void llenarListBaseModel(DefaultListModel listObject, JList listInterfaz) {
         listInterfaz.setModel(listObject);
