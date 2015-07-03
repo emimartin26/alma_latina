@@ -34,9 +34,11 @@ import models.identificacion.Documento;
 import models.identificacion.GestorTipoDocumento;
 import models.identificacion.TipoDocumento;
 import models.inscripcion.Categoria;
+import models.institucion.GestorInstitucionEducativa;
 import models.institucion.InstitucionEducativa;
 import models.institucion.InstitucionPorAlumno;
 import models.institucion.Turno;
+import models.mutual.GestorMutual;
 import models.mutual.Mutual;
 import models.telefono.Telefono;
 import models.tutor.GestorTutor;
@@ -601,6 +603,40 @@ public class ControllerAlumno extends Controller {
         this.getFormularioEspecifico().getTxtAlturaCalleTutor().setEnabled(b);
         this.getFormularioEspecifico().getTxtPisoDeptoTutor().setEnabled(b);
         this.getFormularioEspecifico().getTxtNumDeptoTutor().setEnabled(b);
+    }
+
+    public void guardarNuevaMutual() {
+        String res = new Util().inputData(this.getFormularioEspecifico(), "Ingrese el nombre de la Obra social...", "Nueva Obra social", "/Images/hospital.png");
+        if (!res.isEmpty()) {
+            GestorMutual g = new GestorMutual();
+            g.getModel().setNombre(res);
+            g.getModel().setDescripcion("Not description");
+            g.guardar();
+            this.cargarMutuales();
+        } else {
+            new Util().getMensajeError("No ha ingresado nada...");
+        }
+    }
+
+    public void guardarNuevaInstitucion() {
+        String res = new Util().inputData(this.getFormularioEspecifico(), "Ingrese el nombre de la Institución...", "Nueva Institución", "/Images/escuela.png");
+        if (!res.isEmpty()) {
+            GestorInstitucionEducativa g = new GestorInstitucionEducativa();
+            g.getModel().setNombre(res);
+            GestorConsultas gestor = new GestorConsultas(Localidad.class, "localidad");
+            Localidad loc = (Localidad) gestor.resultConsulta().get(0);
+            Direccion d = new Direccion();
+            d.setLocalidad(loc);
+            d.setAltura(0);
+            d.setCalle("");
+            d.setNumDepto(0);
+            d.setPiso(0);
+            g.getModel().setDireccion(d);
+            g.guardar();
+            this.cargarInstituciones();
+        } else {
+            new Util().getMensajeError("No ha ingresado nada...");
+        }
     }
 
 }

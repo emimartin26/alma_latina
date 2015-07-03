@@ -17,8 +17,8 @@ import models.ubicacion.Direccion;
 public class GestorInstitucionEducativa  extends GestorHibernate implements InterfaceAbm {
     private InstitucionEducativa model;
 
-    public GestorInstitucionEducativa(InstitucionEducativa model) {
-        this.model = model;
+    public GestorInstitucionEducativa() {
+        this.model = new InstitucionEducativa();
     }
 
     public InstitucionEducativa getModel() {

@@ -3,20 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package models.mutual;
+
+import Utilidades.Util;
 import hibernate.GestorHibernate;
 import javax.swing.JOptionPane;
 import models.InterfaceAbm;
+
 /**
  *
  * @author EMILIANO
  */
 public class GestorMutual extends GestorHibernate implements InterfaceAbm {
- private Mutual model;
 
-    public GestorMutual(Mutual model) {
-        this.model = model;
+    private Mutual model;
+
+    public GestorMutual() {
+        this.model = new Mutual();
     }
 
     public Mutual getModel() {
@@ -26,20 +29,23 @@ public class GestorMutual extends GestorHibernate implements InterfaceAbm {
     public void setModel(Mutual model) {
         this.model = model;
     }
-    public void setNombre(String nombre){
+
+    public void setNombre(String nombre) {
         this.model.setNombre(nombre);
     }
-    public void setDescripcion(String descriocion){
+
+    public void setDescripcion(String descriocion) {
         this.model.setDescripcion(descriocion);
     }
- 
- @Override
+
+    @Override
     public void guardar() {
         try {
-            this.guardarObjeto(this.model);
+         this.guardarObjeto(this.model);
             System.out.println(this.model + " - Guardado con exito");
+            new Util().getMensajeInformation("Obra social Guardada con éxito");
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al guardar objeto: " + e);
+            new Util().getMensajeError("Comunicarse con el administrador de sistemas");
         }
     }
 
@@ -74,6 +80,5 @@ public class GestorMutual extends GestorHibernate implements InterfaceAbm {
     public void imprimir() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-}
 
+}

@@ -4,7 +4,7 @@
  */
 package Utilidades;
 
-
+import java.awt.Component;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -72,6 +72,11 @@ public class Util {
 
     }
 
+    public String inputData(Component comp,String mensaje,String title, String pathImage) {
+        String res = (String) JOptionPane.showInputDialog(comp, mensaje, title, JOptionPane.INFORMATION_MESSAGE, new ImageIcon(new ImageIcon(getClass().getResource(pathImage)).getImage()), null, null);
+        return res;
+    }
+
     public static String fecha() {
         SimpleDateFormat formateador = new SimpleDateFormat("dd 'de' MMMM 'de' yyyy", new Locale("es"));
         Date fechaDate = new Date();
@@ -99,5 +104,4 @@ public class Util {
         return lista.contains(obj); //verifica si el objeto pasado como parametro, ya esta ingresado en la lista
     }
 
-    
 }
