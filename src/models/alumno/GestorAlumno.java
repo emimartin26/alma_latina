@@ -32,6 +32,7 @@ public class GestorAlumno extends GestorHibernate implements InterfaceAbm {
     private Alumno model;
 
     public GestorAlumno() {
+        this.model = new Alumno();
     }
 
     public Alumno getModel() {
@@ -123,9 +124,11 @@ public class GestorAlumno extends GestorHibernate implements InterfaceAbm {
         try {
             this.actualizarObjeto(this.model);
             System.out.println(this.model + " - Actualizado con exito");
+            new Util().getMensajeInformation("Alumno Actualizado con exito");
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al actualizar objeto: " + e);
+            new Util().getMensajeError("Comunicarse con el administrador de sistemas");
+            //JOptionPane.showMessageDialog(null, "Error al actualizar objeto: " + e);
         }
     }
 
@@ -162,7 +165,6 @@ public class GestorAlumno extends GestorHibernate implements InterfaceAbm {
         gestor.addFiltro("documento.numero", campo3);
         return gestor.resultConsulta();
     }
-
 
     @Override
     public void imprimir() {

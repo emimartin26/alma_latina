@@ -16,6 +16,7 @@ public class Controller {
 
     private JInternalFrame frame;
     private JDesktopPane escritorio;
+    private int modo;
 
     public JDesktopPane getEscritorio() {
         return escritorio;
@@ -31,5 +32,17 @@ public class Controller {
 
     public void setFrame(JInternalFrame frame) {
         this.frame = frame;
+    }
+
+    public int getModo() {
+        return this.modo;
+    }
+
+    public void setModoGuardar() {
+        this.modo = 0;
+    }
+
+    public void setModoModificar() {
+        this.modo = 1;
     }
 }

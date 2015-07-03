@@ -46,6 +46,7 @@ public class ControllerPrincipal {
   
     public void abrirFrmAlumno(){
         ControllerAlumno controller = new ControllerAlumno(this.getEscritorio());
+        controller.setModoGuardar();
         controller.cargar();
         
     }

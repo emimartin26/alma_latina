@@ -60,6 +60,7 @@ public class ControllerAlumno extends Controller {
         this.setEscritorio(escritorio);
         this.setFrame(new FrmAlumno(this));
         this.gestorAlumno = new GestorAlumno();
+
     }
 
     public GestorAlumno getGestorAlumno() {
@@ -101,6 +102,7 @@ public class ControllerAlumno extends Controller {
         this.abrir();
         this.crearControllerAlumno();
         this.inicializarDatos();
+
     }
 
     public void cargarFromListAlumno() {
@@ -110,6 +112,7 @@ public class ControllerAlumno extends Controller {
         this.controllerLocalidad = new ControllerLocalidad(this.getFormularioEspecifico());
         this.inicializarDatos();
         this.initDataMod();
+
     }
 
     public void llenarList(Set set, JList listInterfaz) {
@@ -163,27 +166,18 @@ public class ControllerAlumno extends Controller {
             this.blockFieldTutor(false);
         }
 
-//        this.getFormularioEspecifico().
-//        
-//        this.getGestorAlumno().setNombre(nombre);
-//        this.getGestorAlumno().setApellido(apellido);
-//        this.getGestorAlumno().setEmail(email);
-//        this.getGestorAlumno().setFechaNac(fechaNacimiento);
-//        this.getGestorAlumno().setDocumento(this.getDocumento());
-//        this.getGestorAlumno().setTelefonos(this.getTelefonos());
-//        this.getGestorAlumno().setDireccion(this.getDireccion());
-//        this.getGestorAlumno().setGrupoSanguineo(this.getGrupoSanguineo());
-//        this.getGestorAlumno().setMutual(this.getMutual());
-//        this.getGestorAlumno().setInstitucionPorAlumno(this.getInstitucionPorAlumno());
-//        this.getGestorAlumno().setAlergia(this.getAlergias());
-//        this.getGestorAlumno().setTratamientos(this.getTratamientos());
-//        this.getGestorAlumno().setObservaciones(obsevarciones);
-//        this.getGestorAlumno().setTutor(this.getTutor());
     }
 
     public void abrir() {
         this.getEscritorio().add(this.getFrame());
         this.getFrame().setVisible(true);
+        if (this.getModo() == 0) {
+            this.getFormularioEspecifico().setTitle("Nuevo Alumno");
+        } else {
+            this.getFormularioEspecifico().setTitle("Actualizar Alumno");
+
+        }
+
     }
 
     public boolean isEmptyTxt(JTextComponent c) {
@@ -239,13 +233,13 @@ public class ControllerAlumno extends Controller {
     }
 
     public void getDatos() {
+
         if (validarDatos()) {
             String nombre = this.getFormularioEspecifico().getTxtNombre().getText();
             String apellido = this.getFormularioEspecifico().getTxtApellido().getText();
             String email = this.getFormularioEspecifico().getTxtEmail().getText();
             Date fechaNacimiento = (Date) this.getFormularioEspecifico().getDateFechaNacimiento().getDate();
             String obsevarciones = this.getFormularioEspecifico().getTextObs().getText();
-            this.getGestorAlumno().crearModelo();
             this.getGestorAlumno().setNombre(nombre);
             this.getGestorAlumno().setApellido(apellido);
             this.getGestorAlumno().setEmail(email);
@@ -260,14 +254,19 @@ public class ControllerAlumno extends Controller {
             this.getGestorAlumno().setTratamientos(this.getTratamientos());
             this.getGestorAlumno().setObservaciones(obsevarciones);
             this.getGestorAlumno().setTutor(this.getTutor());
-
-            this.getGestorAlumno().guardar();
-            this.getFormularioEspecifico().setVisible(false);
-            int opcion = new Util().confirmacion("¿Desea crear un nuevo alumno?");
-            if (opcion == JOptionPane.YES_OPTION) {
-                ControllerAlumno controller = new ControllerAlumno(this.getEscritorio());
-                controller.cargar();
+            if (this.getModo() == 0) {
+                this.getGestorAlumno().guardar();
+                int opcion = new Util().confirmacion("¿Desea crear un nuevo alumno?");
+                if (opcion == JOptionPane.YES_OPTION) {
+                    ControllerAlumno controller = new ControllerAlumno(this.getEscritorio());
+                    controller.setModoGuardar();
+                    controller.cargar();
+                }
+            } else {
+                this.getGestorAlumno().actuailizar();
             }
+            this.getFormularioEspecifico().setVisible(false);
+
         } else {
             System.out.println("No son validos");
         }
@@ -275,7 +274,6 @@ public class ControllerAlumno extends Controller {
     }
 
     public Mutual getMutual() {
-
         return (Mutual) this.getFormularioEspecifico().getCmbMutual().getSelectedItem();
     }
 

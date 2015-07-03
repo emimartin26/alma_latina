@@ -113,9 +113,10 @@ public class ControllerListAlumno extends Controller {
             int fila = this.getFormularioEspecifico().getTblAlumnos().getSelectedRow();
             Alumno a = (Alumno) this.getFormularioEspecifico().getTblAlumnos().getValueAt(fila, 0);
             ControllerAlumno controller = new ControllerAlumno(this.getEscritorio());
-            GestorAlumno gestor = new GestorAlumno();
-            gestor.setModel(a);
-            controller.setGestorAlumno(gestor);
+            GestorAlumno gestor_alum = new GestorAlumno();
+            gestor_alum.setModel(a);
+            controller.setGestorAlumno(gestor_alum);
+            controller.setModoModificar();
             controller.cargarFromListAlumno();
         } else {
             new Util().getMensajeError("No ha seleccionado ningún Alumno...");

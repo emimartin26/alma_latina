@@ -39,7 +39,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }
 
     private void setIcon() {
-        URL iconURL = getClass().getResource("/Images/icons/estadoAlumno.png");
+        URL iconURL = getClass().getResource("/Images/icon.png");
 // iconURL is null when not found
         ImageIcon icon = new ImageIcon(iconURL);
         this.setIconImage(icon.getImage());
