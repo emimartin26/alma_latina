@@ -502,26 +502,26 @@ public class ControllerAlumno extends Controller {
 
     }
 
-    public void addCategoria() {
-        GestorLista gestorLista = new GestorLista();
-        DefaultListModel defaultListModel = gestorLista.getDefaultListModelBaseListModel(this.getFormularioEspecifico().getListCategoria().getModel());
-        if (!(defaultListModel.contains(this.getCategoria()))) {
-            defaultListModel.addElement(this.getCategoria());
-            gestorLista.llenarListBaseModel(defaultListModel, this.getFormularioEspecifico().getListCategoria());
+//    public void addCategoria() {
+//        GestorLista gestorLista = new GestorLista();
+//        DefaultListModel defaultListModel = gestorLista.getDefaultListModelBaseListModel(this.getFormularioEspecifico().getListCategoria().getModel());
+//        if (!(defaultListModel.contains(this.getCategoria()))) {
+//            defaultListModel.addElement(this.getCategoria());
+//            gestorLista.llenarListBaseModel(defaultListModel, this.getFormularioEspecifico().getListCategoria());
+//
+//        }
+//    }
 
-        }
-    }
+//    public Categoria getCategoria() {
+//        return (Categoria) this.getFormularioEspecifico().getCmbCategoria().getSelectedItem();
+//    }
 
-    public Categoria getCategoria() {
-        return (Categoria) this.getFormularioEspecifico().getCmbCategoria().getSelectedItem();
-    }
-
-    public void removeCategoria() {
-        GestorLista gestorLista = new GestorLista();
-        DefaultListModel defaultListModel = gestorLista.getDefaultListModelBaseListModel(this.getFormularioEspecifico().getListCategoria().getModel());
-        defaultListModel.remove(this.getFormularioEspecifico().getListCategoria().getSelectedIndex());
-        gestorLista.llenarListBaseModel(defaultListModel, this.getFormularioEspecifico().getListCategoria());
-    }
+//    public void removeCategoria() {
+//        GestorLista gestorLista = new GestorLista();
+//        DefaultListModel defaultListModel = gestorLista.getDefaultListModelBaseListModel(this.getFormularioEspecifico().getListCategoria().getModel());
+//        defaultListModel.remove(this.getFormularioEspecifico().getListCategoria().getSelectedIndex());
+//        gestorLista.llenarListBaseModel(defaultListModel, this.getFormularioEspecifico().getListCategoria());
+//    }
 
     public void cargarLocalidades() {
 
@@ -562,11 +562,11 @@ public class ControllerAlumno extends Controller {
         ges.cargarCombo(g.resultConsulta(), this.getFormularioEspecifico().getCmbTurno(), false);
     }
 
-    public void cargarCategorias() {
-        GestorConsultas g = new GestorConsultas(Categoria.class, "categoria");
-        GestorCombo ges = new GestorCombo();
-        ges.cargarCombo(g.resultConsulta(), this.getFormularioEspecifico().getCmbCategoria(), true);
-    }
+//    public void cargarCategorias() {
+//        GestorConsultas g = new GestorConsultas(Categoria.class, "categoria");
+//        GestorCombo ges = new GestorCombo();
+//        ges.cargarCombo(g.resultConsulta(), this.getFormularioEspecifico().getCmbCategoria(), true);
+//    }
 
     public void inicializarDatos() {
         this.cargarLocalidades();
@@ -575,7 +575,7 @@ public class ControllerAlumno extends Controller {
         this.cargarMutuales();
         this.cargarInstituciones();
         this.cargarTurnos();
-        this.cargarCategorias();
+    //    this.cargarCategorias();
     }
 
     public void eventChek() {
