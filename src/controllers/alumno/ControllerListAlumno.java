@@ -75,9 +75,8 @@ public class ControllerListAlumno extends Controller {
         String character_apellido = this.getFormularioEspecifico().getTxtApellido().getText();
         String character_tutor = this.getFormularioEspecifico().getTxtPadre().getText();
         String character_dni = this.getFormularioEspecifico().getTxtDni().getText();
-
         this.limpiarTabla();
-        if (!(character_apellido.isEmpty() & character_dni.isEmpty() & character_dni.isEmpty())) {
+        if (!(character_apellido.isEmpty() & character_dni.isEmpty() & character_tutor.isEmpty())) {
             this.cargarTabla(this.getQueryFilter(character_tutor, character_apellido, character_dni));
 
         }
@@ -122,5 +121,9 @@ public class ControllerListAlumno extends Controller {
             new Util().getMensajeError("No ha seleccionado ningún Alumno...");
         }
 
+    }
+
+    public void imprimir() {
+        this.getGestor().imprimir();
     }
 }

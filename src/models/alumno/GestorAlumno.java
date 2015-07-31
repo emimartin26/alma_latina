@@ -160,15 +160,21 @@ public class GestorAlumno extends GestorHibernate implements InterfaceAbm {
         gestor.addFiltro("tutor.apellido", campo1);
 
         gestor.addFiltro("apellido", campo2);
+        System.out.println(campo2);
 
         gestor.createAlias("alumno.documento", "documento");
         gestor.addFiltro("documento.numero", campo3);
         return gestor.resultConsulta();
     }
 
-    @Override
+       @Override
     public void imprimir() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            GestorImprimir gestor = new GestorImprimir(this.listar_por_filtro("","",""), "Alumnos", "alumnos.jasper");
+            gestor.imprimir();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
     }
 
 }
