@@ -191,6 +191,10 @@ public class Alumno {
         this.estado = estado;
     }
 
+    public long getId() {
+        return id;
+    }
+
     public String toString() {
         return this.nombre + " - " + this.apellido + " - " + this.email + " - " + this.InstitucionPorAlumno + " - " + this.GrupoSanguineo + " - " + this.alergias + " - " + this.direccion + " - " + this.documento + " - " + this.fechaNacimiento + " - " + this.mutual + " - " + this.telefonos + " - " + this.tratamientos + " - " + this.tutor + " - " + this.observaciones;
     }
