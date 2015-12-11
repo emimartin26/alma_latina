@@ -127,7 +127,8 @@ public class FrmListAlumno extends javax.swing.JInternalFrame {
         btnCancelar = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
         btnCancelar1 = new javax.swing.JButton();
-        btnImprimir = new javax.swing.JButton();
+        btnInscripcion = new javax.swing.JButton();
+        btnImprimir1 = new javax.swing.JButton();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0));
         jSeparator1 = new javax.swing.JSeparator();
 
@@ -251,7 +252,7 @@ public class FrmListAlumno extends javax.swing.JInternalFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 879, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 885, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -288,11 +289,19 @@ public class FrmListAlumno extends javax.swing.JInternalFrame {
             }
         });
 
-        btnImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons/estadoAlumno.png"))); // NOI18N
-        btnImprimir.setText("Imprimir");
-        btnImprimir.addActionListener(new java.awt.event.ActionListener() {
+        btnInscripcion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons/sheet3.png"))); // NOI18N
+        btnInscripcion.setText("Inscripcion");
+        btnInscripcion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnImprimirActionPerformed(evt);
+                btnInscripcionActionPerformed(evt);
+            }
+        });
+
+        btnImprimir1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons/estadoAlumno.png"))); // NOI18N
+        btnImprimir1.setText("Imprimir");
+        btnImprimir1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImprimir1ActionPerformed(evt);
             }
         });
 
@@ -301,9 +310,11 @@ public class FrmListAlumno extends javax.swing.JInternalFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(0, 10, Short.MAX_VALUE)
-                .addComponent(btnImprimir)
+                .addContainerGap()
+                .addComponent(btnInscripcion)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnImprimir1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnGuardar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCancelar1)
@@ -319,7 +330,8 @@ public class FrmListAlumno extends javax.swing.JInternalFrame {
                     .addComponent(btnGuardar)
                     .addComponent(btnCancelar)
                     .addComponent(btnCancelar1)
-                    .addComponent(btnImprimir))
+                    .addComponent(btnInscripcion)
+                    .addComponent(btnImprimir1))
                 .addContainerGap())
         );
 
@@ -333,14 +345,12 @@ public class FrmListAlumno extends javax.swing.JInternalFrame {
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(93, 93, 93)
-                                .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jSeparator1)
-                                .addGap(18, 18, 18)))
+                        .addGap(93, 93, 93)
+                        .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 808, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jSeparator1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -400,16 +410,21 @@ public class FrmListAlumno extends javax.swing.JInternalFrame {
         this.controller.mostrarTodo();
     }//GEN-LAST:event_btnListarActionPerformed
 
-    private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
+    private void btnInscripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInscripcionActionPerformed
+        this.controller.abrirFrmInscripcion();
+    }//GEN-LAST:event_btnInscripcionActionPerformed
+
+    private void btnImprimir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimir1ActionPerformed
         this.controller.imprimir();
-    }//GEN-LAST:event_btnImprimirActionPerformed
+    }//GEN-LAST:event_btnImprimir1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnCancelar1;
     private javax.swing.JButton btnGuardar;
-    private javax.swing.JButton btnImprimir;
+    private javax.swing.JButton btnImprimir1;
+    private javax.swing.JButton btnInscripcion;
     private javax.swing.JButton btnListar;
     private javax.swing.Box.Filler filler1;
     private javax.swing.JLabel jLabel1;

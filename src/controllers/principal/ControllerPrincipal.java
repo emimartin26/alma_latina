@@ -56,7 +56,7 @@ public class ControllerPrincipal {
     }
     
     public void abrirFrmInscripcion(){
-        ControllerInscripcion controller = new ControllerInscripcion(this.getEscritorio());
+        ControllerInscripcion controller = new ControllerInscripcion(this.getEscritorio(),null);
         controller.abrir();
         controller.inicializarDatos();
         

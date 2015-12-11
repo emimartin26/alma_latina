@@ -5,7 +5,9 @@
  */
 
 package models.inscripcion;
+import controllers.GestorConsultas;
 import hibernate.GestorHibernate;
+import java.util.List;
 import javax.swing.JOptionPane;
 import models.InterfaceAbm;
 
@@ -16,8 +18,8 @@ import models.InterfaceAbm;
 public class GestorCategoria extends GestorHibernate implements InterfaceAbm {
    private Categoria model;
 
-    public GestorCategoria(Categoria model) {
-        this.model = model;
+    public GestorCategoria() {
+        this.model = new Categoria();
     }
 
     public Categoria getModel() {
@@ -68,6 +70,11 @@ public class GestorCategoria extends GestorHibernate implements InterfaceAbm {
     @Override
     public void listar() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public List listCategorias() {
+        GestorConsultas gestor = new GestorConsultas(Categoria.class, "categoria");
+        return gestor.resultConsulta();    
     }
 
     @Override

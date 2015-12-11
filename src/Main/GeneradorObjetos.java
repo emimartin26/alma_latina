@@ -11,6 +11,7 @@ import hibernate.HibernateUtil;
 import models.grupo.GrupoSanguineo;
 import models.identificacion.TipoDocumento;
 import models.inscripcion.Categoria;
+import models.inscripcion.Estado;
 import models.institucion.InstitucionEducativa;
 import models.institucion.Turno;
 import models.mutual.Mutual;
@@ -178,6 +179,52 @@ public class GeneradorObjetos {
         c2.setNombre("Salsa");
         this.getGestor().guardarObjeto(c2);
         System.out.println("Categorias is ready...");
+
+    }
+    
+    public void cargarEstados(){
+        Estado e = new Estado();
+        e.setNombre("Vigente");
+        e.setAmbito("inscripcion");
+        e.setDescripcion("");
+        this.getGestor().guardarObjeto(e);
+        
+        Estado e1 = new Estado();
+        e1.setNombre("Finalizada");
+        e1.setAmbito("inscripcion");
+        e1.setDescripcion("");
+        this.getGestor().guardarObjeto(e1);
+        
+        Estado e2 = new Estado();
+        e2.setNombre("Cancelada");
+        e2.setAmbito("inscripcion");
+        e2.setDescripcion("");
+        this.getGestor().guardarObjeto(e2);
+        
+        //Cuota
+          Estado e3 = new Estado();
+        e3.setNombre("Pendiente");
+        e3.setAmbito("cuota");
+        e3.setDescripcion("");
+        this.getGestor().guardarObjeto(e3);
+        
+         Estado e4 = new Estado();
+        e4.setNombre("Paga");
+        e4.setAmbito("cuota");
+        e4.setDescripcion("");
+        this.getGestor().guardarObjeto(e4);
+       
+        Estado e5 = new Estado();
+        e5.setNombre("Vencida");
+        e5.setAmbito("cuota");
+        e5.setDescripcion("");
+        this.getGestor().guardarObjeto(e5);
+        
+        Estado e6 = new Estado();
+        e6.setNombre("Cancelada");
+        e6.setAmbito("cuota");
+        e6.setDescripcion("");
+        this.getGestor().guardarObjeto(e6);
 
     }
 }

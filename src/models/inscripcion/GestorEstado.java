@@ -5,6 +5,7 @@
  */
 
 package models.inscripcion;
+import controllers.GestorConsultas;
 import hibernate.GestorHibernate;
 import javax.swing.JOptionPane;
 import models.InterfaceAbm;
@@ -15,8 +16,8 @@ import models.InterfaceAbm;
 public class GestorEstado  extends GestorHibernate implements InterfaceAbm {
  private Estado model;
 
-    public GestorEstado(Estado model) {
-        this.model = model;
+    public GestorEstado() {
+        this.model = new Estado();
     }
 
     public Estado getModel() {
@@ -78,5 +79,12 @@ public class GestorEstado  extends GestorHibernate implements InterfaceAbm {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+    public Estado getEstado(String ambito, String nombre){
+        GestorConsultas gestor = new GestorConsultas(Estado.class, "estado");
+        gestor.addFiltro("ambito", ambito);
+        gestor.addFiltro("nombre", nombre);
+        Estado e = (Estado) gestor.resultConsulta().get(0);
+        return e;
+    }
 }
 

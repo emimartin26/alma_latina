@@ -20,6 +20,7 @@ private Inscripcion model;
 
     public GestorInscripcion() {
         this.model = new Inscripcion();
+        this.model.setEstado(new GestorEstado().getEstado("inscripcion","Vigente"));
     }
 
     public Inscripcion getModel() {

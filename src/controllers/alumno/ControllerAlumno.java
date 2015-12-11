@@ -11,6 +11,7 @@ import Utilidades.Util;
 import com.toedter.calendar.JDateChooser;
 import controllers.Controller;
 import controllers.GestorConsultas;
+import controllers.inscripcion.ControllerInscripcion;
 import java.awt.Color;
 import java.util.Date;
 import java.util.HashSet;
@@ -258,11 +259,13 @@ public class ControllerAlumno extends Controller {
             this.getGestorAlumno().setTutor(this.getTutor());
             if (this.getModo() == 0) {
                 this.getGestorAlumno().guardar();
-                int opcion = new Util().confirmacion("¿Desea crear un nuevo alumno?");
+                int opcion = new Util().confirmacion("¿Desea inscribir al alumno?");
                 if (opcion == JOptionPane.YES_OPTION) {
-                    ControllerAlumno controller = new ControllerAlumno(this.getEscritorio());
-                    controller.setModoGuardar();
-                    controller.cargar();
+                    ControllerInscripcion controller = new ControllerInscripcion(this.getEscritorio(),this.getGestorAlumno());
+                    controller.abrir();
+//                    ControllerAlumno controller = new ControllerAlumno(this.getEscritorio());
+//                    controller.setModoGuardar();
+//                    controller.cargar();
                 }
             } else {
                 this.getGestorAlumno().actuailizar();

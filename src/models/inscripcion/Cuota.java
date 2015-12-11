@@ -6,7 +6,7 @@
 
 package models.inscripcion;
 
-import java.sql.Date;
+import java.util.Date;
 import javax.persistence.*;
 /**
  *
@@ -22,7 +22,22 @@ public class Cuota {
     @OneToOne(targetEntity = Estado.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Estado estado;
     
+    /*
+        Fecha de la cuota
+    */
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date fecha;
+    /*
+        Fecha de vencimiento
+    */ 
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaVencimiento;
+    /*
+        Fecha en que se pago
+    */
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date fechaPago;
+        
     private int numeroDeCuota;  
 
     public Estado getEstado() {
@@ -47,6 +62,22 @@ public class Cuota {
 
     public void setNumeroDeCuota(int numeroDeCuota) {
         this.numeroDeCuota = numeroDeCuota;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    public Date getFechaPago() {
+        return fechaPago;
+    }
+
+    public void setFechaPago(Date fechaPago) {
+        this.fechaPago = fechaPago;
     }
     
 }

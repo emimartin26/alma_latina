@@ -5,13 +5,11 @@
  */
 
 import controllers.GestorConsultas;
-import controllers.alumno.ControllerAlumno;
 import hibernate.GestorHibernate;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
-import javax.transaction.Transactional;
 import models.alumno.Alumno;
 import models.alumno.GestorAlumno;
 import models.grupo.GrupoSanguineo;
@@ -24,15 +22,12 @@ import models.ubicacion.Direccion;
 import models.ubicacion.Localidad;
 import models.ubicacion.Pais;
 import models.ubicacion.Provincia;
-import org.hibernate.FlushMode;
-import org.hibernate.Query;
 import org.junit.After;
 import org.junit.AfterClass;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
 /**
  *

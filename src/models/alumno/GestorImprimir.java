@@ -23,7 +23,8 @@ public class GestorImprimir {
     public GestorImprimir(List lista, String Subtitulo, String nombreReporte) {
         try {
             String so = System.getProperty("os.name");
-            if ("Linux".equals(so)) {
+            
+            if ("Linux".equals(so) || "Mac OS X".equals(so)) {
                 String cadena = System.getProperty("user.dir");
                 String patch = cadena + "/src/Reportes/" + nombreReporte;
                 this.crearGestor(patch);

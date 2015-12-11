@@ -7,6 +7,7 @@ package controllers.alumno;
 
 import Utilidades.Util;
 import controllers.Controller;
+import controllers.inscripcion.ControllerInscripcion;
 import java.util.Iterator;
 import java.util.List;
 import javax.swing.JDesktopPane;
@@ -125,5 +126,20 @@ public class ControllerListAlumno extends Controller {
 
     public void imprimir() {
         this.getGestor().imprimir();
+    }
+
+    public void abrirFrmInscripcion() {
+        if (this.getFormularioEspecifico().getTblAlumnos().getSelectedRow() >= 0) {
+            int fila = this.getFormularioEspecifico().getTblAlumnos().getSelectedRow();
+            Alumno a = (Alumno) this.getFormularioEspecifico().getTblAlumnos().getValueAt(fila, 0);
+            ControllerAlumno controller = new ControllerAlumno(this.getEscritorio());
+            GestorAlumno gestor_alum = new GestorAlumno();
+            gestor_alum.setModel(a);
+            ControllerInscripcion controllerIns = new ControllerInscripcion(this.getEscritorio(),gestor_alum);
+            controllerIns.abrir();
+        } else {
+            new Util().getMensajeError("No ha seleccionado ningún Alumno...");
+        }
+
     }
 }

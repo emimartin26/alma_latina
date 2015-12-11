@@ -6,10 +6,11 @@
 
 package models.inscripcion;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
+import models.alumno.Alumno;
 
 /**
  *
@@ -22,7 +23,8 @@ public class Inscripcion{
     @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
     private long id;
     
-    private String referenciarAlumno;
+    @OneToOne(targetEntity = Alumno.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Alumno alumno;
     
     @OneToOne(targetEntity = Categoria.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Categoria categoria;
@@ -33,8 +35,10 @@ public class Inscripcion{
     @OneToMany(targetEntity = Cuota.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Cuota> coutas;
     
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date fecha;
     
+    private int year;
     
     public Inscripcion() {
         this.coutas=new <Cuota> HashSet();
@@ -70,6 +74,22 @@ public class Inscripcion{
 
     public void setFecha(Date fecha) {
         this.fecha = fecha;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    public Alumno getAlumno() {
+        return alumno;
+    }
+
+    public void setAlumno(Alumno alumno) {
+        this.alumno = alumno;
     }
     
     

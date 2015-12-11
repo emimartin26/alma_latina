@@ -7,14 +7,9 @@ package Main;
 
 import controllers.GestorConsultas;
 import controllers.principal.ControllerPrincipal;
-import gui.FrmPrincipal;
-import hibernate.GestorHibernate;
 import hibernate.HibernateUtil;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.util.Properties;
 import models.alumno.Alumno;
+import models.inscripcion.GestorCuota;
 
 /**
  * import hibernate.HibernateUtil;
@@ -29,13 +24,23 @@ public class main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        HibernateUtil.inicializar();
-        GestorConsultas g = new GestorConsultas(Alumno.class, "alumno");
-        ControllerPrincipal contr = new ControllerPrincipal();
-        contr.abrir();
+//        Propiedades prop = new Propiedades();
+//        prop.setConfig();
+//        HibernateUtil.inicializar();
+//        
+//        GestorConsultas g = new GestorConsultas(Alumno.class, "alumno");
+//        ControllerPrincipal contr = new ControllerPrincipal();
+//        contr.abrir();
         //config();
-//        GeneradorObjetos g = new GeneradorObjetos();
-//        g.cargarTurnos();
+        //GeneradorObjetos g = new GeneradorObjetos();
+        //g.cargarTurnos();
+        //g.cargarTiposDocumentos();
+        //g.cargarGrupoSanguineo();
+        //g.cargarCategorias();
+        //g.cargarColegios();
+        
+        GestorCuota g = new GestorCuota();
+        g.generarCuotas(null);
 
     }
 
