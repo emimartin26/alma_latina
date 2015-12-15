@@ -6,6 +6,7 @@ package Utilidades;
 
 import java.awt.Component;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -72,7 +73,7 @@ public class Util {
 
     }
 
-    public String inputData(Component comp,String mensaje,String title, String pathImage) {
+    public String inputData(Component comp, String mensaje, String title, String pathImage) {
         String res = (String) JOptionPane.showInputDialog(comp, mensaje, title, JOptionPane.INFORMATION_MESSAGE, new ImageIcon(new ImageIcon(getClass().getResource(pathImage)).getImage()), null, null);
         return res;
     }
@@ -102,6 +103,16 @@ public class Util {
 
     public static boolean estaIngresadoList(List lista, Object obj) {
         return lista.contains(obj); //verifica si el objeto pasado como parametro, ya esta ingresado en la lista
+    }
+
+    public static Calendar DateToCalendar(Date date) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        return cal;
+    }
+
+    public static SimpleDateFormat DATE_FORMAT() {
+        return new SimpleDateFormat("dd-MM-yyyy");
     }
 
 }

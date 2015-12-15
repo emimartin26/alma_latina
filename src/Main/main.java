@@ -8,7 +8,10 @@ package Main;
 import controllers.GestorConsultas;
 import controllers.principal.ControllerPrincipal;
 import hibernate.HibernateUtil;
+import java.util.Calendar;
+import java.util.Iterator;
 import models.alumno.Alumno;
+import models.inscripcion.Cuota;
 import models.inscripcion.GestorCuota;
 
 /**
@@ -26,21 +29,30 @@ public class main {
     public static void main(String[] args) {
 //        Propiedades prop = new Propiedades();
 //        prop.setConfig();
-//        HibernateUtil.inicializar();
+      HibernateUtil.inicializar();
 //        
-//        GestorConsultas g = new GestorConsultas(Alumno.class, "alumno");
-//        ControllerPrincipal contr = new ControllerPrincipal();
-//        contr.abrir();
+        GestorConsultas g = new GestorConsultas(Alumno.class, "alumno");
+        ControllerPrincipal contr = new ControllerPrincipal();
+        contr.abrir();
         //config();
         //GeneradorObjetos g = new GeneradorObjetos();
+        //g.cargarEstados();
         //g.cargarTurnos();
         //g.cargarTiposDocumentos();
         //g.cargarGrupoSanguineo();
         //g.cargarCategorias();
         //g.cargarColegios();
+//        
+//        GestorCuota g1 = new GestorCuota();
+//        Calendar aux = Calendar.getInstance();
+//        aux.set(Calendar.YEAR, 2017);
+//        aux.set(Calendar.MONTH, 0);
+
+//        Iterator it = g1.generarCuotas(g1.generarFechasCuotas(false,aux)).iterator();
         
-        GestorCuota g = new GestorCuota();
-        g.generarCuotas(null);
+       // while(it.hasNext()){
+       //     System.out.println((Cuota) it.next());
+        //}
 
     }
 

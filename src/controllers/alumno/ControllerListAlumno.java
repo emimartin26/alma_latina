@@ -137,6 +137,7 @@ public class ControllerListAlumno extends Controller {
             gestor_alum.setModel(a);
             ControllerInscripcion controllerIns = new ControllerInscripcion(this.getEscritorio(),gestor_alum);
             controllerIns.abrir();
+            controllerIns.cargarTabla();
         } else {
             new Util().getMensajeError("No ha seleccionado ningún Alumno...");
         }

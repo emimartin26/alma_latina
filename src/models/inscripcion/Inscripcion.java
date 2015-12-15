@@ -91,6 +91,9 @@ public class Inscripcion{
     public void setAlumno(Alumno alumno) {
         this.alumno = alumno;
     }
-    
+    @Override
+    public String toString(){
+        return this.categoria.getNombre() + " - " + this.getYear() + " - " + this.estado.getNombre();
+    }
     
 }

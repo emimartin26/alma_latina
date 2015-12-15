@@ -22,7 +22,7 @@ public class HibernateUtil {
             
             conf.setProperty("hibernate.connection.driver_class", "org.postgresql.Driver");
             conf.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
-            conf.setProperty("hibernate.connection.url", "jdbc:postgresql://192.168.1.104:5432/"+ prop.getProperty("dbname"));
+            conf.setProperty("hibernate.connection.url", "jdbc:postgresql://192.168.1.103:5432/"+ prop.getProperty("dbname"));
 
 
             conf.setProperty("hibernate.connection.username",prop.getProperty("dbuser"));// Colocar Usuario y contraseña de postgresql

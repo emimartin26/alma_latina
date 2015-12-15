@@ -7,6 +7,8 @@ package views;
 
 import com.toedter.calendar.JYearChooser;
 import controllers.inscripcion.ControllerInscripcion;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
@@ -18,20 +20,35 @@ import javax.swing.JTable;
 public class FrmInscripcion extends javax.swing.JInternalFrame {
 
     private final ControllerInscripcion controller;
-    
+
     /**
      * Creates new form FrmInscripcion
+     *
      * @param controller
      */
     public FrmInscripcion(ControllerInscripcion controller) {
         initComponents();
         this.controller = controller;
+        this.hideColumn();
+        this.centrarVentana();
     }
+
     public void hideColumn() {
         tblCategorias.getColumnModel().getColumn(0).setMaxWidth(0);
         tblCategorias.getColumnModel().getColumn(0).setMinWidth(0);
         tblCategorias.getColumnModel().getColumn(0).setPreferredWidth(0);
     }
+
+    private void centrarVentana() {
+        //este metodo devuelve el tamaño de la pantalla  
+        Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
+        //obtenemos el tamaño de la ventana  
+        Dimension ventana = this.getSize();
+        //para centrar la ventana lo hacemos con el siguiente calculo  
+        this.setLocation((pantalla.width - ventana.width) / 2, (pantalla.height - ventana.height) / 2);
+        //y para finalizar la hacemos visible  
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -250,12 +267,15 @@ public class FrmInscripcion extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnInscribirActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+        this.controller.cerrar();
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        this.controller.cerrar();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnEliminarInscripActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarInscripActionPerformed
+        this.controller.eliminar();
     }//GEN-LAST:event_btnEliminarInscripActionPerformed
 
     public JButton getBtnCancelar() {

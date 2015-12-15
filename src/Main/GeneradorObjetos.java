@@ -202,7 +202,7 @@ public class GeneradorObjetos {
         this.getGestor().guardarObjeto(e2);
         
         //Cuota
-          Estado e3 = new Estado();
+        Estado e3 = new Estado();
         e3.setNombre("Pendiente");
         e3.setAmbito("cuota");
         e3.setDescripcion("");

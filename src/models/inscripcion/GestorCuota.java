@@ -5,8 +5,10 @@
  */
 package models.inscripcion;
 
+import Main.Config;
+import Utilidades.Util;
 import hibernate.GestorHibernate;
-import java.sql.Date;
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashSet;
@@ -43,8 +45,8 @@ public class GestorCuota extends GestorHibernate implements InterfaceAbm {
         this.model.setFechaVencimiento(fecha);
     }
 
-    public void setNumeroDeCouta(int num) {
-        this.model.setNumeroDeCuota(num);
+    public Date getFechaVencimiento() {
+        return this.model.getFechaVencimiento();
     }
 
     @Override
@@ -89,50 +91,72 @@ public class GestorCuota extends GestorHibernate implements InterfaceAbm {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void generarCuotas(Calendar fechaInscripcion) {
+    /*
+     Si flagNow = true, se generan fechas a partir de hoy.
+     Si flagNow = false, se generan fechas a partir de la fecha auxCalendar
+     */
+    public ArrayList<Calendar> generarFechasCuotas(boolean flagNow, Calendar auxCalendar) {
         ArrayList<Calendar> listaFechas = new ArrayList<Calendar>();
-        Set<Cuota> cuotas = new HashSet<Cuota>();
-        Calendar now = Calendar.getInstance();
-        //auxVar.set(Calendar.MONTH, 5);
+        //Seteo en este momento como fecha inicial
+        Calendar now;
+        if (flagNow) {
+            now = Calendar.getInstance();
+        } else {
+            now = auxCalendar;
+        }
+
+        //now.set(Calendar.MONTH, 5);
         now.set(Calendar.DAY_OF_MONTH, 1);
+        //lo guarado en la lista de fechas
+        listaFechas.add(now);
 
         int flag = now.get(Calendar.MONTH); // MES ACTUAL
 
-        System.out.println("MES ACTUAL: " + flag);
         Calendar aux;
-        Cuota auxCuota;
         while (flag < 11) {//11 es diciembre va del 0 al 11
             aux = Calendar.getInstance();
+            aux.set(Calendar.YEAR, now.get(Calendar.YEAR));
+
             aux.set(Calendar.DAY_OF_MONTH, 1);
-            aux.set(Calendar.MONTH, flag);
+            aux.set(Calendar.MONTH, flag + 1);
             listaFechas.add(aux);
-            auxCuota = new Cuota();
-            auxCuota.setFecha(aux.getTime());
-           // aux.set(Calendar.DAY_OF_MONTH, );
-           // auxCuota.setFechaVencimiento(aux);
-            //cuotas.add(new Cuota().s)
             flag++;
         }
 
-        Iterator<Calendar> it = listaFechas.iterator();
-        Calendar fecha;
-        int año;
-        int mes;
-        int dia;
+        return listaFechas;
+    }
 
-       // System.out.println("Fecha Actual: " + + "/" + (mes) + "/" + año);
+    public Set<Cuota> generarCuotas(boolean flagNow, Calendar auxCalendar) {
+        Set<Cuota> cuotas = new HashSet<Cuota>();
+        Iterator<Calendar> it = this.generarFechasCuotas(flagNow,auxCalendar).iterator();
+        Calendar fecha;
+
+        Cuota auxCuota;
         while (it.hasNext()) {
             fecha = (Calendar) it.next();
-            año = fecha.get(Calendar.YEAR);
-            mes = fecha.get(Calendar.MONTH) + 1;
-            dia = fecha.get(Calendar.DAY_OF_MONTH);
-
-            System.out.println("Fecha Actual: " + dia + "/" + (mes) + "/" + año);
-            //System.out.printf("Hora Actual: %02d:%02d:%02d %n", hora, minuto, segundo);
-            //System.out.println("-------------Fecha desglosada----------------");
+            auxCuota = new Cuota();
+            auxCuota.setFecha(fecha.getTime());
+            fecha.set(Calendar.DAY_OF_MONTH, (int) Config.FECHAVENCIMIENTOCUOTA);
+            auxCuota.setFechaVencimiento(fecha.getTime());
+            auxCuota.setEstado(new GestorEstado().getEstado("cuota", "Pendiente"));
+            auxCuota.setPrecio(Config.PRECIOCUOTA);
+            cuotas.add(auxCuota);
         }
-        //System.out.println("result: " + listaFechas.toString());
 
+        return cuotas;
+    }
+    
+    public boolean estaVencida() {
+        Calendar fecha1 = Calendar.getInstance();
+        Calendar fecha2 = Util.DateToCalendar(this.getFechaVencimiento());
+        long diff = fecha2.getTimeInMillis() - fecha1.getTimeInMillis();
+        // calcular la diferencia en dias
+        long diffDays = diff / (24 * 60 * 60 * 1000);
+
+        if (diffDays < 0) {// Si me devuelve negativo es porque esta vencida
+            return true;
+        }
+        return false;
     }
 
 }
